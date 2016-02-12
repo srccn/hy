@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <base href="{{ @BASE.'/'.@UI }}" />
+        <title>{{ @site }}</title>
+
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="Provide mortgage rate search service to signed in customer for free">
+	    <meta name="author" content="MortgagePro">
+
+
+        <!-- Bootstrap -->
+        <link href="{{@BASE}}/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+        
+        <!-- Custom CSS -->
+        <link href="{{@BASE}}/lib/css/modern-business.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="{{@BASE}}/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        
+        <!-- loaner css -->
+        <link href="{{@BASE}}/lib/css/loaner.css" rel="stylesheet" >
+        
+    </head>
+ 
+    <body>
+        <include href="nav.htm" />
+        
+        <check if="{{@message}}">
+            <true>
+		        <div id="message" name="message" class="alert alert-info" style="position:absolute">
+		              <strong>系统提示：</strong> {{@message}}
+		        </div>
+            </true>
+        </check>
+<!--         
+        <div >
+            <div class="col-lg-12" id="message" name="message" style="color:red; background-color:green;font-size:0.9em; display:block;position:absolute">{{@message}}</div>
+            <br>
+        </div>
+-->        
+        <div style="margin:20px">
+        
+        </div>
+        
+<!--         
+        <include href="signin.htm" />
+        <include href="signup.htm" />
+-->        
+        
+           
+
+            
+
+            

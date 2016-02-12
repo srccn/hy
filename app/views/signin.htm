@@ -1,0 +1,16 @@
+    <div style="width:30%; margin:auto; ">
+        <form name="frmSignin" id="frmSignin" action="{{ @BASE.'/verifysignin' }}" method="post" class="form-group row">
+            <fieldset>
+                <label>登入名</label>
+                <input type="text" name="username" size="16" class="form-control">
+           </fieldset>
+           <fieldset>     
+                <label>密码</label>
+                <input type="password" name="password" size="16" class="form-control">
+           </fieldset>
+           <div style="text-align:center; margin-top:20px;">
+	            <input type="submit" value="登入" class="btn btn-primary ">
+	            <a id="Cancel" href="{{@BASE}}/home" class="btn btn-warning " >取消</a>
+            </div>
+        </form>	
+    </div>

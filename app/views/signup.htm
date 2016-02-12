@@ -1,0 +1,25 @@
+<form id="frmSignup" name="frmSignup" action="{{ @BASE.'/adduser' }}" method="post" class="form-inline" style="font-size:0.8em; display_:none">
+    <fieldset>
+        <label style="font-size:1.5em">Sign Up : </label>
+        <label>
+            Name
+        </label>
+        <input type="text" name="username" size="16" class="form-control input-sm">
+        <label>
+            Eamil
+        </label>
+        <input type="text" name="email" size="16" class="form-control input-sm">
+        <label>
+            Phone
+        </label>
+        <input type="text" name="phone" size="16" class="form-control input-sm">
+
+        <label>
+        Password
+        </label>
+            <input type="password" name="password" size="16" class="form-control input-sm">
+        <input type="submit" value="Sign Up" class="btn btn-info btn-sm">
+        <button id="Cancel" onclick="location.href='http://localhost/hy/home'" class="btn btn-warning btn-sm" >Cancel</button>
+    </fieldset>
+    <br>
+</form>
