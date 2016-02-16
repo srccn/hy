@@ -1,0 +1,67 @@
+<div class="container">
+   <h3>品种审定（鉴定)</h3>
+   <div id="updateArticleFrm" style="display_:none; width:100%;">
+      <form name="update" method="post" action="{{@BASE.'/update/q2'}}" class="form-group row" enctype="multipart/form-data"">
+          <fieldset class="form-group">
+	          <label for="zuowu_name" class="col-sm-2 form-control-label">作物名:</label>
+	          <div class="col-sm-8">
+	          <input type="text" name="zuowu_name" id="zuowu_name" placeholder="作物名" class="form-control ">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+	          <label for="pinzhong_name" class="col-sm-2 form-control-label">品种名:</label>
+	          <div class="col-sm-8">
+	          <input type="text" name="pinzhong_name" id="pinzhong_name" placeholder="品种名" class="form-control">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+	          <label for="certification_code" class="col-sm-2 form-control-label">审定/认定证书编号:</label>
+	          <div class="col-sm-3">
+	          <input type="text" name="certification_code" id="certification_code" placeholder="审定/认定证书编号" class="form-control">
+	          </div>
+	          <label for="certified_by_" class="col-sm-2 form-control-label">审定/认定单位:</label>
+	          <div class="col-sm-3">
+	          <input type="text" name="certified_by" id="certified_by" placeholder="审定/认定单位" class="form-control">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+          
+	              <check if="{{ trim(@POST.attachment_name) }}">
+	                  <true>
+                          <label for="attachment" class="col-sm-6 form-control-label">现有附加文件:
+                              <a href="{{@BASE.'/download_attachment/q2/'. @POST.id }}">{{ trim(@POST.attachment_name) }}</a>
+                              <div class="checkbox">
+                                  <label><input type="checkbox" name="removeAttachment" value="1">删除附加文件</label>
+                              </div>
+                          </label>
+	                  </true>
+	                  <false>
+                          <label for="attachment" class="col-sm-1 form-control-label">附加文件:</label>
+	                  </false>
+	              </check>
+  			  <div class="col-sm-4">
+  			      <input type="hidden" name="MAX_FILE_SIZE" value="10000000" /> <!-- 10MB -->
+			      <input id="attachment" type="file" name="attachment" >
+			  </div>
+
+
+		  </fieldset>
+		  
+    <div class="control-group">
+        <div class="">
+            <input type="hidden" name="id" value="{{ @POST.id }}" />
+            <input type="hidden" name="updateArticle" value="update" />
+            <button type="submit" class="btn btn-primary"><i class="icon-edit icon-white"></i> 确认</button>
+        </div>
+    </div>
+    
+      </form>
+    </div>
+</div>
+<script>
+document.getElementById('zuowu_name').value = "{{ trim(@POST.zuowu_name) }}" ;
+document.getElementById('pinzhong_name').value = "{{ trim(@POST.pinzhong_name) }}" ;
+document.getElementById('certification_code').value = "{{ trim(@POST.certification_code) }}" ;
+document.getElementById('certified_by').value = "{{ trim(@POST.certified_by) }}" ;
+
+</script>

@@ -1,77 +1,76 @@
 <div class="container">
    <div id="addArticleFrm" style="display:none; width:100%;">
 
-      <form method="post" action="{{@BASE.'/article/create'}}" class="form-group row" ENCTYPE="multipart/form-data">
-          <fieldset class="form-group">
-	          <label for="category" id="category" class="col-sm-2 form-control-label">类别:</label>
-	          <div class="col-sm-3">
-	          <select name="category" id="category"class="form-control">
-	              <option value="奖励与成果鉴定">奖励与成果鉴定</option>
-	              <option value="品种审定" >品种审定</option>
-	              <option value="新品种保护" >新品种保护</option>
-	              <option value="颁布技术标准">颁布技术标准</option>
-	              <option value="制定技术规程">制定技术规程</option>
-	              <option value="发表文章">发表文章</option>
-	              <option value="出版著作">出版著作</option>
-	              <option value="专利">专利</option>
-	              <option value="典型事例">典型事例</option>
-	          </select>
-	          </div>
-          </fieldset>
-
+      <form method="post" action="{{@BASE.'/create/q1'}}" class="form-group row" ENCTYPE="multipart/form-data">
           <fieldset class="form-group">
 	          <label for="title" class="col-sm-2 form-control-label">标题:</label>
-	          <div class="col-sm-10">
+	          <div class="col-sm-8">
 	          <input type="text" name="title" id="title" placeholder="标题" class="form-control ">
 	          </div>
           </fieldset>
           <fieldset class="form-group">
 	          <label for="author" class="col-sm-2 form-control-label">作者:</label>
-	          <div class="col-sm-10">
+	          <div class="col-sm-8">
 	          <input type="text" name="author" id="author" placeholder="作者" class="form-control">
 	          </div>
           </fieldset>
           <fieldset class="form-group">
-	          <label for="publisher" class="col-sm-2 form-control-label">签发单位或发表期刊:</label>
-	          <div class="col-sm-10">
+	          <label for="publisher" class="col-sm-2 form-control-label">颁奖单位:</label>
+	          <div class="col-sm-8">
 	          <input type="text" name="publisher" id="publisher" placeholder="签发单位或发表期刊" class="form-control">
 	          </div>
           </fieldset>
           <fieldset class="form-group">
-	          <label for="author" class="col-sm-1 form-control-label">日期:</label>
-	          <div class="col-sm-3">
-	          <input type="text" name="publish_year_month" id="publish_year_month" placeholder="发表或获奖年月" class="form-control">
+	          <label for="award_name" class="col-sm-1 form-control-label">获奖名称:</label>
+	          <div class="col-sm-2">
+	          <input type="text" name="award_name" id="award_name" placeholder="获奖名称" class="form-control">
 	          </div>
+          
+	          <label for="author" class="col-sm-1 form-control-label">日期:</label>
+	          <div class="col-sm-2">
+	              <select name="publish_year" >
+	                  <option value="2016">2016</option>
+	                  <option value="2015">2015</option>
+	                  <option value="2014">2014</option>
+	                  <option value="2013">2013</option>
+	                  <option value="2012">2012</option>
+	                  <option value="2011">2011</option>
+	                  <option value="2010">2010</option>
+	              </select>年
+	              <select name="publish_month" >
+	                  <option value="01">01</option>
+	                  <option value="02">02</option>
+	                  <option value="03">03</option>
+	                  <option value="04">04</option>
+	                  <option value="05">05</option>
+	                  <option value="06">06</option>
+	                  <option value="07">07</option>
+	                  <option value="08">08</option>
+	                  <option value="09">09</option>
+	                  <option value="10">10</option>
+	                  <option value="11">11</option>
+	                  <option value="12">12</option>
+	              </select>月
+	              <input type="hidden" name="publish_year_month" id="publish_year_month" placeholder="发表或获奖年月" class="form-control">
+              </div>
 
 	          <label for="level" class="col-sm-1 form-control-label">等级:</label>
-	          <div class="col-sm-3">
+	          <div class="col-sm-2">
 	          <select name="level" id="level" class="form-control">
 	              <option value="国家级" selected>国家级</option>
 	              <option value="省部级">省部级</option>
-	              <option value="不适用">不适用</option>
 	          </select>
 	          </div>
-
-	          <label for="attachment" class="col-sm-1 form-control-label">附加文件:</label>
+        </fieldset>
+        <fieldset>
+	          <label for="attachment" class="col-sm-2 form-control-label">附加文件:</label>
   			  <div class="col-sm-3">
 			      <input id="attachment" type="file" name="attachment" >
 			  </div>
 
 		  </fieldset>
-		  <fieldset>
-	          <label for="note" class="col-sm-1 form-control-label">备注:</label>
-  			  <div class="col-sm-10" style="margin-top:3px; margin-bottom:5px">
-			      <textarea id="note" name="note" class="form-control" rows="2"></textarea>
-			  </div>
-		  </fieldset>
-		  <fieldset>
-	          <label for="ref_url" class="col-sm-1 form-control-label">参照网址:</label>
-  			  <div class="col-sm-10">
-			      <input type=url id="ref_url" name="ref_url" placeholder="参照网址 例如  http://www.baidu.com" class="form-control">
-			  </div>
-		  </fieldset>
 
-          <input type="submit" name="addArticle" class="btn btn-secondary" value="提交" >
+          <input type="submit" name="addArticle" class="btn btn-primary" style="float:left" value="提交" >
       </form>
     </div>
 </div>

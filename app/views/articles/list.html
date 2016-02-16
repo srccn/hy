@@ -1,14 +1,14 @@
-<div style="margin-left:10px;margin-right:10px">
+<div style="margin-left:1px;margin-right:1px; display:block; float:left" class="col-sm-10">
+<h3>所获奖励与成果鉴定</h3>
 <table class="table table-hover table-bordered__ table-condensed sortable" >
     <thead style="background-color:lightgrey">
     <tr>
         <th scope="col">标题</th>
         <th scope="col">作者</th>
         <th scope="col">年月</th>
-        <th scope="col">类别</th>
-        <th scope="col">签发单位<br>或发表期刊</th>
-        <th scope="col" style="min-width:%">级别</th>
-        <th scope="col"></th> <!-- note -->
+        <th scope="col">颁奖单位</th>
+        <th scope="col">获奖名称</th>
+        <th scope="col" >级别</th>
         <th scope="col"></th> <!-- attachment -->
         <th scope="col"></th> <!-- actions -->
     </tr>
@@ -28,36 +28,35 @@
             </check>
             </td>
             <td>{{ trim(@article.author) }}</td>
-            <td>{{ trim(@article.publish_year_month) }}</td>
-            <td>{{ trim(@article.category) }}</td>
+            <td>{{ trim(@article.publish_year) .' '. trim(@article.publish_month)}}</td>
             <td>{{ trim(@article.publisher) }}</td>
+            <td>{{ trim(@article.award_name) }}</td>
             <td>{{ trim(@article.level) }}</td>
-            <td>
-                <check if="{{ trim(@article.note) }}">
-                    <true>
-                        <a class="glyphicon glyphicon-comment" data-toggle="popover" data-placement="left" data-trigger="hover" title="备注" data-content="{{ trim(@article.note) }}" ></a>
-                    </true>
-                </check>
-            </td>
             <td>    
                 <check if="{{ trim(@article.attachment_name) }}">
                     <true>
-                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/article/download_attachment/'. @article.id }}" title="下载附加文件"></a>
+                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/q1/'. @article.id }}" title="下载附加文件"></a>
                     </true>
                 </check>
             </td>
             <td>
-                <a href="{{ @BASE.'/article/update/'. @article.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
-                <a href="{{ @BASE.'/article/duplicate/'. @article.id }}" class="glyphicon glyphicon-duplicate" title="复制"></a> <!-- edit -->
-                <a href="{{ @BASE.'/article/delete/'. @article.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+                <a href="{{ @BASE.'/update/q1/'. @article.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+<!-- 
+"app/controllers/ArticleController.php"                <a href="{{ @BASE.'/article/duplicate/'. @article.id }}" class="glyphicon glyphicon-duplicate" title="复制"></a> 
+-->
+                <a href="{{ @BASE.'/delete/q1/'. @article.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
         </tr>
     </repeat>
     </tbody>
  
 </table>
-<hr style="clear:both;margin:5px"/>
-<button id="addArticleBtn" class="btn-primary" style="float:right;margin:5px">添加成果</button>
+
+<button id="addArticleBtn" class="btn btn-primary" style="float:left;margin:5px">添加</button>
+
 <div style="clear:both""></div>
 
 <include href="articles/add.html" />
+<hr style="clear:both;margin:5px"/>
+
+<include href="q2/test.html" />
 

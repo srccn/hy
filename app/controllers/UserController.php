@@ -70,16 +70,19 @@ class UserController extends BaseController {
 					$this->f3->SESSION['userid'] = $userId;
 					$this->f3->set('message','欢迎使用 您已登入为：'.$name);
             		$this->f3->set('view','home.htm');
+            		$this->f3->set('showMenu',false);
 		            echo Template::instance()->render('layout.htm');
 		            
 				} else {
-					$this->f3->set('message', "Sign in Failed. ");
+					$this->f3->set('message', "登入失败，请检查登入名和密码");
             		$this->f3->set('view','signin.htm');
-		            echo Template::instance()->render('layout.htm');
+            		$this->f3->set('showMenu',false);
+            		echo Template::instance()->render('layout.htm');
 				}
 			} else {
 				$this->f3->set('message', "Please enter name and password. ");
 				$this->f3->set('view','signin.htm');
+            	$this->f3->set('showMenu',false);
 				echo Template::instance()->render('layout.htm');
 				
 			}

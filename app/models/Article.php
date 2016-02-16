@@ -3,14 +3,14 @@ class Article extends DB\SQL\Mapper {
 	
 	private $filter ='user_id=0';
 
-	public function __construct(DB\SQL $db) {
+	public function __construct(DB\SQL $db , $table_name, $cols) {
 		
 		if ($_SESSION['userid']) {
 			$userId = $_SESSION['userid'];
 			$_POST['user_id']= $userId;
 			$this->filter='user_id = ' . $userId;
 		}
-		parent::__construct($db,'articles', "id,title,author,publish_year_month,category,publisher,level,attachment_name,note,ref_url,user_id" );
+		parent::__construct($db, $table_name, $cols );
 	}
 	
 	public function all() {

@@ -7,34 +7,55 @@ Class ArticleController extends BaseController {
 		parent::__construct();
 		
 		if (! isset($this->f3->SESSION['username'])){ //send not signed in user back to signin page
-			$this->f3->set('message', '请登入');
+			$this->f3->set('message', '请输入登入名和密码');
 			$this->f3->set('view','signin.htm');
 			echo Template::instance()->render('layout.htm');			
 		    die();
 		}
 	}
 	
-	
-	public function index()	{
-		$article = new Article($this->db);
+	public function index($f3,$param)	{
+		
+		$table = $param['table'];
+		$db_table_name = MyConst::$tables[$table];
+		
+		$article = new Article($this->db, MyConst::$tables[$table], MyConst::$cols[$table] );
 		$this->f3->set('articles',$article->all());
-		$this->f3->set('view','articles/list.html');
+				
+//		$q2 = new Article($this->db, MyConst::$tables["Q2"], MyConst::$cols["Q2"]);
+//		$this->f3->set('q2',$q2->all());
+		
+		$this->f3->set('view',"$db_table_name/list.html");
 		echo Template::instance()->render('layout.htm');
 	}
 
-	public function create()
+	public function index_q2()	{
+	
+	
+		$q2 = new Article($this->db, MyConst::$tables["Q2"], MyConst::$cols["Q2"]);
+		$this->f3->set('q2',$q2->all());
+	
+		$this->f3->set('view','q2/list.html');
+		echo Template::instance()->render('layout.htm');
+	}
+	
+	
+	public function create($f3,$param)
 	{
-		echo "in create()";
+		
+		$table = $param['table'];
+		$db_table_name = MyConst::$tables[$table];
+		
 		if($this->f3->exists('POST.addArticle'))
 		{
-			$article = new Article($this->db);
+			$article = new Article($this->db, $db_table_name, MyConst::$cols[$table]);
 			$article->add();
 			
 			$id = $article->id;
 			
 			$this->f3->set('POST.id', $id);
-			$this->updateAttachment();
-			$this->f3->reroute('/article/list');
+			$this->updateAttachment($db_table_name);
+			$this->f3->reroute('/list/'.$table);
 	
 		} else
 		{
@@ -43,15 +64,18 @@ Class ArticleController extends BaseController {
 		}
 	}
 	
-	public function delete()
+	public function delete($f3,$param)
 	{
+		$table = $param['table'];
+		$db_table_name = MyConst::$tables[$table];
+		
 		if($this->f3->exists('PARAMS.id'))
 		{
-			$article = new Article($this->db);
+			$article =  new Article($this->db, MyConst::$tables[$table], MyConst::$cols[$table]);
 			$article->delete($this->f3->get('PARAMS.id'));
 		}
 	
-		$this->f3->reroute('/article/list');
+		$this->f3->reroute('/list/'.$param['table']);
 //	    echo Template::instance()->render('layout.htm');
 	}
 
@@ -75,29 +99,34 @@ Class ArticleController extends BaseController {
 	}
 	
 	
-	public function update()
+	public function update($f3,$param)
 	{
-		$article = new Article($this->db);
-	
+	    
+		$table = MyConst::$tables[$param['table']];
+		$cols = MyConst::$cols[$prarm['table']];
+		
+		$article = new Article($this->db, $table, $cols);
+		
 		if($this->f3->exists('POST.updateArticle'))
 		{
-			$this->updateAttachment();
+			$this->updateAttachment($table);
+			
 			$article->edit($this->f3->get('POST.id'));
-			$this->f3->reroute('/article/list');
+			$this->f3->reroute("/list/".$param['table']);
 	
 		} else
 		{
 			$article->getById($this->f3->get('PARAMS.id'));
 			$this->f3->set('article',$article);
-			$this->f3->set('view','/articles/update.html');
+			$this->f3->set('view',"/$table/update.html");
 		}
 		echo Template::instance()->render('layout.htm');
 	}
 	
-	private function updateAttachment(){
+	private function updateAttachment($table_name){
 		//remove attachment case
 		if ( isset($_POST['updateArticle'])  &&   isset($_POST['removeAttachment']) )  {
-			$query = "update articles
+			$query = "update " . $table_name . "
 			set attachment_name=null ,
 			attachment_type=null ,
 			attachment_size=0 ,
@@ -130,14 +159,14 @@ Class ArticleController extends BaseController {
 				$fileName = addslashes($fileName);
 			}
 			
-			$_POST['attachment'] = $content;
+//			$_POST['attachment'] = $content;
 			$_POST['attachment_name'] = $fileName;
 			
-			$query = "update articles 
+			$query = "update " . $table_name . " 
 			             set attachment_name='$fileName' , 
 			                 attachment_type='$fileType' , 
 			                 attachment_size='$fileSize' , 
-			             attachment='$content' 
+			                 attachment='$content' 
 			          where id = " . $this->f3->get('POST.id') ;
 			
 			$this->db->exec($query);
@@ -145,14 +174,17 @@ Class ArticleController extends BaseController {
 		}
 	}
 
-	public function downloadAttachment() {
+	public function downloadAttachment($f3, $param) {
+		
+		$table = MyConst::$tables[$param['table']];
+		$cols = MyConst::$cols[$prarm['table']];
 		
 		if ( ! $this->f3->get('PARAMS.id')) {
 			die ("Failed to download attachment, article id is not defined");
 		}
 		
 		$query = "select attachment_name, attachment_type, attachment_size, attachment 
-				   from articles
+				   from " . $table ."
 				  where id = ". $this->f3->get('PARAMS.id');
 		
 		$result = $this->db->exec($query);
@@ -169,8 +201,8 @@ Class ArticleController extends BaseController {
 		
 		header("Content-length: $size");
 		header("Content-type: $type");
-		header("Content-Disposition: attachment; filename=$name");
-		echo $content;
+		header("Content-Disposition: attachment; filename=". stripslashes($name));
+		echo ($content);
 		
 	}
 	
