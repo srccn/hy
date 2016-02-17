@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h3>登入：{{@SESSION['username']}}</h3>  
+<h1>录入汇总</h1>
+<h3>1.获奖项目</h3>
+  <ol type="A">
+    <li>国家级奖
+      <ol type="1">
+         <repeat group="{{ @report['g1_answer1'] }}" value="{{ @line }}">
+              <li>
+                  <repeat group="{{@line}}" value="{{@field}}">
+                      {{@field}} &nbsp &nbsp                      
+                  </repeat>
+              </li>
+          </repeat>
+      </ol>
+    </li>
+    <li>省部级奖
+      <ol type="1">
+         <repeat group="{{ @report['g1_answer2'] }}" value="{{ @line }}">
+              <li>
+                  <repeat group="{{@line}}" value="{{@field}}">
+                      {{@field}} &nbsp &nbsp                      
+                  </repeat>
+              </li>
+          </repeat>
+      </ol>
+    </li>
+  </ol>
+<h3>2.品种审定（鉴定）</h3>
+  <ol type="1">
+         <repeat group="{{ @report['g2_answer'] }}" value="{{ @line }}">
+              <li>
+                  <repeat group="{{@line}}" value="{{@field}}">
+                      {{@field}} &nbsp &nbsp                      
+                  </repeat>
+              </li>
+          </repeat>
+  </ol>
+<h3>3.新品种保护</h3>
+  <ol type="A">
+    <li>已获得新品种保护
+      <ol type="1">
+         <repeat group="{{ @report['g3_answer1'] }}" value="{{ @line }}">
+              <li>
+                  <repeat group="{{@line}}" value="{{@field}}">
+                      {{@field}} &nbsp &nbsp                      
+                  </repeat>
+              </li>
+          </repeat>
+      </ol>
+    </li>
+    <li>申请中新品种保护
+      <ol type="1">
+         <repeat group="{{ @report['g3_answer2'] }}" value="{{ @line }}">
+              <li>
+                  <repeat group="{{@line}}" value="{{@field}}">
+                      {{@field}} &nbsp &nbsp                      
+                  </repeat>
+              </li>
+          </repeat>
+      </ol>
+    </li>
+  </ol>
+<h3>4.颁布的技术标准</h3>
+  <ol type="1">' .
+    $g4_answer .
+  '</ol>
+<h3>5.制定技术规程</h3>
+  <ol type="1">' .
+    $g5_answer .
+  '</ol>
+<h3>6.发表文章</h3>
+<ol type="A">
+<li>发表SCI文章
+  <ol type="1">' .
+  $g6_answer1 .
+  '</ol>
+</li>
+<li>发表核心期刊文章
+  <ol type="1">' .
+  $g6_answer2 .
+  '</ol>
+</li>
+</ol>
+<h3>7.出版著作</h3>
+  <ol type="1">' .
+    $g7_answer .
+  '</ol>
+<h3>8.获得专利</h3>
+<ol type="A">
+<li>发明专利
+  <ol type="1">' .
+  $g8_answer1 .
+  '</ol>
+</li>
+<li>实用新型号专利
+  <ol type="1">' .
+  $g8_answer2 .
+  '</ol>
+</li>
+</ol>
+<h3>9.典型事例</h3>
+  <ol type="1">' .
+    $g9_answer .
+  '</ol>
+
+
+
+</body>
+</html>

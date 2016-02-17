@@ -1,0 +1,40 @@
+<div class="container">
+   <div id="addArticleFrm" style="display:none; width:100%;">
+
+      <form method="post" action="{{@BASE.'/create/q3'}}" class="form-group row" ENCTYPE="multipart/form-data">
+          <fieldset class="form-group">
+	          <label for="zuowu_name" class="col-sm-2 form-control-label">作物名:</label>
+	          <div class="col-sm-8">
+	          <input type="text" name="zuowu_name" id="zuowu_name" placeholder="作物名" class="form-control ">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+	          <label for="pinzhong_name" class="col-sm-2 form-control-label">品种名:</label>
+	          <div class="col-sm-8">
+	          <input type="text" name="pinzhong_name" id="pinzhong_name" placeholder="品种名" class="form-control">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+	          <label for="auth_code" class="col-sm-2 form-control-label">品种权保护编号:</label>
+	          <div class="col-sm-3">
+	          <input type="text" name="auth_code" id="auth_code" placeholder="品种权保护编号" class="form-control">
+	          </div>
+	          <label for="category" class="col-sm-2 form-control-label">类别</label>
+	          <select name="category" id="category">
+	              <option value="已获得新品种保护">已获得新品种保护</option>
+	              <option value="申请中新品种保护">申请中新品种保护</option>
+	          </select>
+          </fieldset>
+          <fieldset class="form-group">
+
+	          <label for="attachment" class="col-sm-1 form-control-label">附加文件:</label>
+  			  <div class="col-sm-3">
+			      <input id="attachment" type="file" name="attachment" >
+			  </div>
+
+		  </fieldset>
+
+          <input type="submit" name="addArticle" class="btn btn-primary" style="float:left" value="提交" >
+      </form>
+    </div>
+</div>

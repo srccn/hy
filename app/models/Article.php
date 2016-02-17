@@ -39,7 +39,12 @@ class Article extends DB\SQL\Mapper {
 		$this->erase();
 	}	
 
+	public function addFilter($filterString){
+		$this->filter = $this->filter." and ".$filterString;
+	}
 
-	
+	public function removeFiler(){
+		$this->filter="";
+	}
 	
 }

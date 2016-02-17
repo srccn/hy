@@ -1,32 +1,103 @@
 <div style="float:left;display:block; width:150px; margin-left:5px; " >
 
 <ul id="menu" class="list-group">
-  <li class="list-group-item">
+      <check if="{{ strpos(@PATH, 'q1') }} ">
+      <true>
+          <li class="list-group-item list-group-item-info">
+      </true>
+      <false>
+          <li class="list-group-item" >
+      </false>
+      </check>    
       <a href="{{@BASE}}/list/q1" >1.奖励与成果鉴定</a>
   </li>    
-  <li class="list-group-item">
-      <a href="{{@BASE}}/list/q2">2.品种审定（鉴定）</a>
+      <check if="{{ strpos(@PATH, 'q2') }} ">
+      <true>
+          <li class="list-group-item list-group-item-info">
+      </true>
+      <false>
+          <li class="list-group-item" >
+      </false>
+      </check>    
+      <a href="{{@BASE}}/list/q2" >2.品种审定（鉴定）</a>
   </li>
-  <li class="list-group-item">
-      <a href="{{@BASE}}/q2/list">3.新品种保护 </a>
+      <check if="{{ strpos(@PATH, 'q3') }} ">
+      <true>
+          <li class="list-group-item list-group-item-info">
+      </true>
+      <false>
+          <li class="list-group-item" >
+      </false>
+      </check>    
+      <a href="{{@BASE}}/list/q3">3.新品种保护 </a>
   </li>
-  <li class="list-group-item">
-      <a href="{{@BASE}}/q2/list">4.颁布的技术标准</a>
+      <check if="{{ strpos(@PATH, 'q4') }} ">
+      <true>
+          <li class="list-group-item list-group-item-info">
+      </true>
+      <false>
+          <li class="list-group-item" >
+      </false>
+      </check>    
+      <a href="{{@BASE}}/list/q4" >4.颁布的技术标准</a>
   </li>
-  <li class="list-group-item">
-      <a href="{{@BASE}}/q2/list">5.制定技术规程</a>
+        <check if="{{ strpos(@PATH, 'q5') }} ">
+      <true>
+          <li class="list-group-item list-group-item-info">
+      </true>
+      <false>
+          <li class="list-group-item" >
+      </false>
+      </check>    
+
+      <a href="{{@BASE}}/list/q5">5.制定技术规程</a>
   </li>
-  <li class="list-group-item">
-      <a href="{{@BASE}}/q2/list">6.发表文章</a>
+       <check if="{{ strpos(@PATH, 'q6') }} ">
+      <true>
+          <li class="list-group-item list-group-item-info">
+      </true>
+      <false>
+          <li class="list-group-item" >
+      </false>
+      </check>    
+
+      <a href="{{@BASE}}/list/q6">6.发表文章</a>
   </li>
-  <li class="list-group-item">
-      <a href="{{@BASE}}/q2/list">8.获得专利</a>
+        <check if="{{ strpos(@PATH, 'q7') }} ">
+      <true>
+          <li class="list-group-item list-group-item-info">
+      </true>
+      <false>
+          <li class="list-group-item" >
+      </false>
+      </check>    
+
+      <a href="{{@BASE}}/list/q7">7.出版著作</a>
   </li>
-  <li class="list-group-item">
-      <a href="{{@BASE}}/q2/list">9.典型事例</a>
+        <check if="{{ strpos(@PATH, 'q8') }} ">
+      <true>
+          <li class="list-group-item list-group-item-info">
+      </true>
+      <false>
+          <li class="list-group-item" >
+      </false>
+      </check>    
+
+      <a href="{{@BASE}}/list/q8">8.获得专利</a>
   </li>
-  <li class="list-group-item">
-      <a href="{{@BASE}}/q2/list">10.汇总</a>
+        <check if="{{ strpos(@PATH, 'q9') }} ">
+      <true>
+          <li class="list-group-item list-group-item-info">
+      </true>
+      <false>
+          <li class="list-group-item" >
+      </false>
+      </check>    
+
+      <a href="{{@BASE}}/list/q9">9.典型事例</a>
+  </li>
+  <li class="list-group-item" >
+      <a href="{{@BASE}}/report" target="_blank">10.汇总</a>
   </li>
 </ul>
 </div>
