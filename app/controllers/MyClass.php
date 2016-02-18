@@ -25,4 +25,18 @@ class MyClass extends BaseController {
 		echo Template::instance()->render('report.html');
 	}
 	
+	function seal(){
+		//update user table to set submit_date to $current_datetime
+		$myuserController = new UserController();
+		$myuserController->sealUser();
+		$this->f3->reroute('@home');
+	}
+
+	function reopen(){
+		//update user table to set submit_date to $current_datetime
+		$myuserController = new UserController();
+		$myuserController->unSealUser();
+		$this->f3->reroute('@home');
+	}
+	
 }

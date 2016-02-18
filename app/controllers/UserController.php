@@ -55,19 +55,21 @@ class UserController extends BaseController {
 	
 				//if check passwrod succeeded
 				$query = "
-				SELECT password, id
+				SELECT password, id, submit_date
 				FROM   users
 				WHERE  name = '$name'
 				";
 				$result=$this->runQuery($query);
 				$regpassword = $result[0]['password'];
 				$userId = $result[0]['id'];
+				$submitDate = $result[0]['submit_date'];
 				//echo $userId;
 	
 				//if (Util::verifyHash($this->f3->POST['password'], $regpassword)) {
 				if ($this->f3->POST['password'] === $regpassword) {
 					$this->f3->SESSION['username'] = $this->f3->POST['username'];
 					$this->f3->SESSION['userid'] = $userId;
+					$this->f3->SESSION['submit_date'] = $submitDate;
 					$this->f3->set('message','欢迎使用 您已登入为：'.$name);
             		$this->f3->set('view','home.htm');
             		$this->f3->set('showMenu',false);
@@ -87,6 +89,32 @@ class UserController extends BaseController {
 				
 			}
 		} 
+	}
+	
+	function sealUser(){
+		date_default_timezone_set("Asia/Shanghai");
+		$current_datetime = date("Y-m-d h:i:sa");
+		$name =$this->f3->SESSION['username'];
+		var_dump($current_datetime);
+		$query = "
+			update users 
+			set submit_date = '$current_datetime' 
+			WHERE  name = '$name'
+		";
+		$result=$this->runQuery($query);
+		$this->f3->set('SESSION[submit_date]', $current_datetime);
+	}
+	
+	function unSealUser(){
+		$name = $this->f3->SESSION['username'];
+	
+		$query = "
+			update users
+			set submit_date = null
+			WHERE  name = '$name'
+		";
+		$result=$this->runQuery($query);
+		$this->f3->set('SESSION[submit_date]', null);
 	}
 	
 }

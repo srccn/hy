@@ -8,10 +8,21 @@ Class ArticleController extends BaseController {
 		
 		if (! isset($this->f3->SESSION['username'])){ //send not signed in user back to signin page
 			$this->f3->set('message', '请输入登入名和密码');
+			$this->f3->set('showMenu',false);
 			$this->f3->set('view','signin.htm');
 			echo Template::instance()->render('layout.htm');			
 		    die();
 		}
+		
+		if (isset($this->f3->SESSION['submit_date'])){ //submitted send user back to home page
+			$this->f3->set('message', '不能修改已提交内容，请联系系统管理人员.');
+			$this->f3->set('showMenu',false);
+//			$this->f3->reroute('@home');
+			$this->f3->set('view','home.htm');
+			echo Template::instance()->render('layout.htm');
+			die();
+		}
+		
 	}
 	
 	public function index($f3,$param)	{
@@ -201,7 +212,7 @@ Class ArticleController extends BaseController {
 		
 		header("Content-length: $size");
 		header("Content-type: $type");
-		header("Content-Disposition: attachment; filename=". stripslashes($name));
+		header("Content-Disposition: attachment; filename=\"" . stripslashes($name) ."\"" );
 		echo ($content);
 		
 	}

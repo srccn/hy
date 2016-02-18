@@ -1,11 +1,29 @@
 
     <!-- Page Content -->
     <header>
-    <div style="text-align:center;  background-color:rgb(222, 222, 100); margin-bottom:0px; padding:100px; ">
+    <div style="text-align:center;  background-color:rgb(222, 222, 100); margin-bottom:10px; padding-top:100px; padding-bottom:100px;">
         <span class="brand-name">国家农业科技项目</span>
-        <h1>西甜瓜科研成果汇总</h1>
-        <div style="margin-top:40px">
-              <a class="btn btn-lg btn-default btn-block__" href="{{@BASE.'/list/q1'}}">提交科研成果</a>
+        <h1>科研成果汇总</h1>
+        <div class="brand-name" style="clear:both;">
+        <check if="{{@SESSION[submit_date]}}">
+            <true>
+                                       您已提交  ： {{@SESSION[submit_date]}}
+		        <div class="text-center" style="margin-top:40px;margin-bottom:40px">
+		              <a class="btn btn-lg btn-default btn-block_ _col-sm-2 disabled" href="{{@BASE.'/list/q1'}}" style="min-width:150px">填写科研成果</a>
+		              <a class="btn btn-lg btn-default btn-block_ _col-sm-2" href="{{@BASE.'/report'}}" style="min-width:150px;">查看汇总</a>
+		              <a class="btn btn-lg btn-default btn-block_ _col-sm-2 disabled" href="{{@BASE.'/submit'}}" style="min-width:150px;">提交</a>
+		              <a class="btn btn-lg btn-default btn-block_ _col-sm-2 " href="{{@BASE.'/reopen'}}" style="min-width:150px;">重启 - 限测试用</a>
+		        </div>
+            </true>
+            <false>
+                                     尚未提交
+		        <div  style="display: block;   margin-left: auto;   margin-right: auto; margin-top:40px; margin-bottom:80px">
+		              <a class="btn btn-lg btn-default btn-block_ _col-sm-2" href="{{@BASE.'/list/q1'}}" style="min-width:150px">填写科研成果</a>
+		              <a class="btn btn-lg btn-default btn-block_ _col-sm-2" href="{{@BASE.'/report'}}" style="min-width:150px;">查看汇总</a>
+		              <a class="btn btn-lg btn-default btn-block_ _col-sm-2" href="{{@BASE.'/submit'}}" style="min-width:150px;">提交</a>
+		        </div>
+            </false>
+        </check>
         </div>
     </div>
     </header>
