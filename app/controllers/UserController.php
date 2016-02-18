@@ -71,9 +71,10 @@ class UserController extends BaseController {
 					$this->f3->SESSION['userid'] = $userId;
 					$this->f3->SESSION['submit_date'] = $submitDate;
 					$this->f3->set('message','欢迎使用 您已登入为：'.$name);
-            		$this->f3->set('view','home.htm');
-            		$this->f3->set('showMenu',false);
-		            echo Template::instance()->render('layout.htm');
+					$this->f3->reroute('@home');
+//             		$this->f3->set('view','home.htm');
+//             		$this->f3->set('showMenu',false);
+// 		            echo Template::instance()->render('layout.htm');
 		            
 				} else {
 					$this->f3->set('message', "登入失败，请检查登入名和密码");
