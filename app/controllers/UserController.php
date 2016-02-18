@@ -78,13 +78,13 @@ class UserController extends BaseController {
 		            
 				} else {
 					$this->f3->set('message', "登入失败，请检查登入名和密码");
-            		$this->f3->set('view','signin.htm');
+            		$this->f3->set('view','home.htm');
             		$this->f3->set('showMenu',false);
             		echo Template::instance()->render('layout.htm');
 				}
 			} else {
 				$this->f3->set('message', "Please enter name and password. ");
-				$this->f3->set('view','signin.htm');
+				$this->f3->set('view','home.htm');
             	$this->f3->set('showMenu',false);
 				echo Template::instance()->render('layout.htm');
 				
