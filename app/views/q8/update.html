@@ -1,0 +1,77 @@
+<div class="container">
+   <h3>获得专利</h3>
+   <div id="updateArticleFrm" style="display_:none; width:100%;">
+      <form name="update" method="post" action="{{@BASE.'/update/q8'}}" class="form-group row" enctype="multipart/form-data"">
+           <fieldset class="form-group">
+	          <label for="title" class="col-sm-1 form-control-label">专利名称:</label>
+	          <div class="col-sm-8">
+	          <input type="text" name="title" id="title" placeholder="专利名称" class="form-control ">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+	          <label for="author" class="col-sm-1 form-control-label">发明人:</label>
+	          <div class="col-sm-8">
+	          <input type="text" name="author" id="author" placeholder="发明人" class="form-control">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+	          <label for="patent_code" class="col-sm-1 form-control-label">专利编号:</label>
+	          <div class="col-sm-2">
+	          <input type="text" name="patent_code" id="patent_code" placeholder="专利编号" class="form-control">
+	          </div>
+
+	          <label for="org_namee" class="col-sm-1 form-control-label">第一发明单位:</label>
+	          <div class="col-sm-2">
+	          <input type="text" name="org_name" id="org_name" placeholder="第一发明单位" class="form-control">
+	          </div>
+
+	          <label for="category" class="col-sm-1 form-control-label">专利类别:</label>
+	          <div class="col-sm-2">
+	          <select name="category" id="category" class="form-control">
+	              <option value="发明专利" >发明专利</option>
+	              <option value="实用新型号专利">实用新型号专利</option>
+	          </select>
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+          
+	              <check if="{{ trim(@POST.attachment_name) }}">
+	                  <true>
+                          <label for="attachment" class="col-sm-6 form-control-label">现有附加文件:
+                              <a href="{{@BASE.'/download_attachment/q8/'. @POST.id }}">{{ trim(@POST.attachment_name) }}</a>
+                              <div class="checkbox">
+                                  <label><input type="checkbox" name="removeAttachment" value="1">删除附加文件</label>
+                              </div>
+                          </label>
+	                  </true>
+	                  <false>
+                          <label for="attachment" class="col-sm-1 form-control-label">附加文件:</label>
+	                  </false>
+	              </check>
+  			  <div class="col-sm-4">
+  			      <input type="hidden" name="MAX_FILE_SIZE" value="10000000" /> <!-- 10MB -->
+			      <input id="attachment" type="file" name="attachment" >
+			  </div>
+
+
+		  </fieldset>
+		  
+    <div class="control-group">
+        <div class="">
+            <input type="hidden" name="id" value="{{ @POST.id }}" />
+            <input type="hidden" name="updateArticle" value="update" />
+            <button type="submit" class="btn btn-primary"><i class="icon-edit icon-white"></i> 确认</button>
+        </div>
+    </div>
+    
+      </form>
+    </div>
+</div>
+<script>
+document.getElementById('title').value = "{{ trim(@POST.title) }}" ;
+document.getElementById('author').value = "{{ trim(@POST.author) }}" ;
+document.getElementById('patent_code').value = "{{ trim(@POST.patent_code) }}" ;
+document.getElementById('org_name').value = "{{ trim(@POST.org_name) }}" ;
+document.getElementById('category').value = "{{ trim(@POST.category) }}" ;
+
+</script>

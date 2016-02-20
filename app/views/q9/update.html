@@ -1,0 +1,59 @@
+<div class="container">
+   <h3>典型事例</h3>
+   <div id="updateArticleFrm" style="display_:none; width:100%;">
+      <form name="update" method="post" action="{{@BASE.'/update/q9'}}" class="form-group row" enctype="multipart/form-data"">
+          <fieldset class="form-group">
+	          <label for="title" class="col-sm-1 form-control-label">事件标题:</label>
+	          <div class="col-sm-9">
+	          <input type="text" name="title" id="title" placeholder="事件标题" class="form-control ">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+	          <label for="author" class="col-sm-1 form-control-label">参加人:</label>
+	          <div class="col-sm-9">
+	          <input type="text" name="author" id="author" placeholder="参加人" class="form-control">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+	          <label for="description" class="col-sm-1 form-control-label">详细内容:</label>
+	          <div class="col-sm-9">
+	          <textarea name="description" id="description" placeholder="详细内容" class="form-control"></textarea>
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+          
+	              <check if="{{ trim(@POST.attachment_name) }}">
+	                  <true>
+                          <label for="attachment" class="col-sm-6 form-control-label">现有附加文件:
+                              <a href="{{@BASE.'/download_attachment/q9/'. @POST.id }}">{{ trim(@POST.attachment_name) }}</a>
+                              <div class="checkbox">
+                                  <label><input type="checkbox" name="removeAttachment" value="1">删除附加文件</label>
+                              </div>
+                          </label>
+	                  </true>
+	                  <false>
+                          <label for="attachment" class="col-sm-1 form-control-label">附加文件:</label>
+	                  </false>
+	              </check>
+  			  <div class="col-sm-4">
+  			      <input type="hidden" name="MAX_FILE_SIZE" value="10000000" /> <!-- 10MB -->
+			      <input id="attachment" type="file" name="attachment" >
+			  </div>
+		  </fieldset>
+		  
+    <div class="control-group">
+        <div class="">
+            <input type="hidden" name="id" value="{{ @POST.id }}" />
+            <input type="hidden" name="updateArticle" value="update" />
+            <button type="submit" class="btn btn-primary"><i class="icon-edit icon-white"></i> 确认</button>
+        </div>
+    </div>
+    
+      </form>
+    </div>
+</div>
+<script>
+document.getElementById('title').value = "{{ trim(@POST.title) }}" ;
+document.getElementById('author').value = "{{ trim(@POST.author) }}" ;
+document.getElementById('description').value = "{{ trim(@POST.description )}}" ;
+</script>

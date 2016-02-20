@@ -21,9 +21,24 @@ class MyClass extends BaseController {
 
 	function report(){
 		$myReportController = new ReportController();
-		$this->f3->set('report', $myReportController->getReport());
-		echo Template::instance()->render('report.html');
+		
+		$download_button = '
+				<form name="create_doc" action="/hy/downloadreport" method="post">
+				  <input type="submit" name="submit_doc" value="Download MS Word" />
+				</form>				
+				';
+		
+		echo $download_button;
+		echo $myReportController->generatePageBody();
+		// echo Template::instance()->render('layout.htm');
+		//		echo Template::instance()->render('report.html');
 	}
+
+	function downloadreport(){
+		$myReportController = new ReportController();
+		$myReportController->generateDownload();
+	}
+	
 	
 	function seal(){
 		//update user table to set submit_date to $current_datetime

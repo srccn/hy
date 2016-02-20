@@ -10,6 +10,7 @@
 	    <meta name="description" content="Provide mortgage rate search service to signed in customer for free">
 	    <meta name="author" content="MortgagePro">
 
+        <link rel="shortcut icon" href="{{@BASE}}/favicon.ico" type="image/x-icon" />
 
         <!-- Bootstrap -->
         <link href="{{@BASE}}/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
@@ -22,7 +23,11 @@
         
 </head>
 <body>
-<div class="container">
+﻿<form name="create_doc" action="/hy/downloadreport" method="post">
+  <input type="submit" name="submit_doc" value="Download MS Word" />
+</form>
+
+﻿<div class="container">
 <h3>登入：{{@SESSION['username']}}</h3>  
 <h1>成果汇总</h1>
 <h3>1.获奖项目</h3>
@@ -86,13 +91,27 @@
     </li>
   </ol>
 <h3>4.颁布的技术标准</h3>
-  <ol type="1">' .
-    $g4_answer .
-  '</ol>
+  <ol type="1">
+         <repeat group="{{ @report['g4_answer'] }}" value="{{ @line }}">
+              <li>
+                  <repeat group="{{@line}}" value="{{@field}}">
+                      {{@field}} &nbsp &nbsp                      
+                  </repeat>
+              </li>
+          </repeat>
+  </ol>
+
 <h3>5.制定技术规程</h3>
-  <ol type="1">' .
-    $g5_answer .
-  '</ol>
+  <ol type="1">
+         <repeat group="{{ @report['g5_answer'] }}" value="{{ @line }}">
+              <li>
+                  <repeat group="{{@line}}" value="{{@field}}">
+                      {{@field}} &nbsp &nbsp                      
+                  </repeat>
+              </li>
+          </repeat>
+  </ol>
+
 <h3>6.发表文章</h3>
 <ol type="A">
 <li>发表SCI文章
@@ -128,7 +147,14 @@
     $g9_answer .
   '</ol>
 
-
+<check if="{{@POST['submit_doc']}}">
+<true>
+  header("Content-type: application/vnd.ms-word");
+  header("Expires: 0");
+  header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+  header("Content-Disposition: attachment;Filename=hy2015.doc");
+</true>
+</check>
 </div>
 </body>
 </html>

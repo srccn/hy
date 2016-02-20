@@ -1,0 +1,52 @@
+<div style="margin-left:1px;margin-right:1px" class="col-sm-10">
+<h3>获得专利</h3>
+<table class="table table-hover table-bordered__ table-condensed sortable" >
+    <thead style="background-color:lightgrey">
+    <tr>
+        <th scope="col">专利名称</th>
+        <th scope="col">发明人</th>
+        <th scope="col">专利编号</th>
+        <th scope="col">第一发明单位</th>
+        <th scope="col">专利类别</th>
+        <th scope="col"></th> <!-- attachment -->
+        <th scope="col"></th> <!-- actions -->
+    </tr>
+    </thead>
+ 
+    <tbody>
+    <repeat group="{{ @articles }}" value="{{ @item }}">
+        <tr>
+            <td>
+            <check if="{{trim(@item.ref_url)}}">
+                <true>
+                    <a href="{{trim(@item.ref_url)}}" target="_blank">{{ trim(@item.title) }} </a>
+                </true>
+                <false>
+                    {{ trim(@item.title) }}
+                </false>
+            </check>
+            </td>
+            <td>{{ trim(@item.author) }}</td>
+            <td>{{ trim(@item.patent_code) }}</td>
+            <td>{{ trim(@item.org_name)}}</td>
+            <td>{{ trim(@item.category)}}</td>
+            <td>    
+                <check if="{{ trim(@item.attachment_name) }}">
+                    <true>
+                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/q8/'. @item.id }}" title="下载附加文件"></a>
+                    </true>
+                </check>
+            </td>
+            <td>
+                <a href="{{ @BASE.'/update/q8/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+                <a href="{{ @BASE.'/delete/q8/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+        </tr>
+    </repeat>
+    </tbody>
+ 
+</table>
+<button id="addArticleBtn" class="btn btn-primary" style="float:left;margin:5px">添加</button>
+<div style="clear:both""></div>
+<include href="q8/add.html" />
+<hr style="clear:both;margin:5px"/>
+

@@ -1,0 +1,56 @@
+<div class="container">
+   <div id="addArticleFrm" style="display:none; width:100%;">
+
+      <form method="post" action="{{@BASE.'/create/q5'}}" class="form-group row" ENCTYPE="multipart/form-data">
+          <fieldset class="form-group">
+	          <label for="title" class="col-sm-2 form-control-label">规程名称:</label>
+	          <div class="col-sm-8">
+	          <input type="text" name="title" id="title" placeholder="规程名称" class="form-control ">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+	          <label for="auth_by" class="col-sm-2 form-control-label">规程编写单位:</label>
+	          <div class="col-sm-8">
+	          <input type="text" name="auth_by" id="auth_by" placeholder="规程编写单位" class="form-control">
+	          </div>
+          </fieldset>
+          <fieldset class="form-group">
+	          <label for="auth_year" class="col-sm-1 form-control-label">编写时间:</label>
+	          <div class="col-sm-2">
+	              <select name="auth_year" id="auth_year">
+	                  <option value="2016">2016</option>
+	                  <option value="2015">2015</option>
+	                  <option value="2014">2014</option>
+	                  <option value="2013">2013</option>
+	                  <option value="2012">2012</option>
+	                  <option value="2011">2011</option>
+	                  <option value="2010">2010</option>
+	              </select>年
+	              <select name="auth_month" id="auth_month">
+	                  <option value="01">01</option>
+	                  <option value="02">02</option>
+	                  <option value="03">03</option>
+	                  <option value="04">04</option>
+	                  <option value="05">05</option>
+	                  <option value="06">06</option>
+	                  <option value="07">07</option>
+	                  <option value="08">08</option>
+	                  <option value="09">09</option>
+	                  <option value="10">10</option>
+	                  <option value="11">11</option>
+	                  <option value="12">12</option>
+	              </select>月
+          </fieldset>
+          <fieldset class="form-group">
+
+	          <label for="attachment" class="col-sm-1 form-control-label">附加文件:</label>
+  			  <div class="col-sm-3">
+			      <input id="attachment" type="file" name="attachment" >
+			  </div>
+
+		  </fieldset>
+
+          <input type="submit" name="addArticle" class="btn btn-primary" style="float:left" value="提交" >
+      </form>
+    </div>
+</div>

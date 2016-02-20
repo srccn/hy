@@ -1,12 +1,11 @@
 <div style="margin-left:1px;margin-right:1px" class="col-sm-10">
-<h3>品种审定（鉴定)</h3>
+<h3>典型事例</h3>
 <table class="table table-hover table-bordered__ table-condensed sortable" >
     <thead style="background-color:lightgrey">
     <tr>
-        <th scope="col">作物名</th>
-        <th scope="col">品种名</th>
-        <th scope="col">审定号</th>
-        <th scope="col">审定单位</th>
+        <th scope="col">事件标题</th>
+        <th scope="col">参加人</th>
+        <th scope="col">详细内容</th>
         <th scope="col"></th> <!-- attachment -->
         <th scope="col"></th> <!-- actions -->
     </tr>
@@ -18,26 +17,25 @@
             <td>
             <check if="{{trim(@item.ref_url)}}">
                 <true>
-                    <a href="{{trim(@item.ref_url)}}" target="_blank">{{ trim(@item.zuowu_name) }} </a>
+                    <a href="{{trim(@item.ref_url)}}" target="_blank">{{ trim(@item.title) }} </a>
                 </true>
                 <false>
-                    {{ trim(@item.zuowu_name) }}
+                    {{ trim(@item.title) }}
                 </false>
             </check>
             </td>
-            <td>{{ trim(@item.pinzhong_name) }}</td>
-            <td>{{ trim(@item.certification_code) }}</td>
-            <td>{{ trim(@item.certified_by) }}</td>
+            <td style="max-width:200px">{{ trim(@item.author) }}</td>
+            <td style="max-width:400px">{{ trim(@item.description)}}</td>
             <td>    
                 <check if="{{ trim(@item.attachment_name) }}">
                     <true>
-                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/q2/'. @item.id }}" title="下载附加文件"></a>
+                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/q9/'. @item.id }}" title="下载附加文件"></a>
                     </true>
                 </check>
             </td>
             <td>
-                <a href="{{ @BASE.'/update/q2/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
-                <a href="{{ @BASE.'/delete/q2/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+                <a href="{{ @BASE.'/update/q9/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+                <a href="{{ @BASE.'/delete/q9/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
         </tr>
     </repeat>
     </tbody>
@@ -45,6 +43,6 @@
 </table>
 <button id="addArticleBtn" class="btn btn-primary" style="float:left;margin:5px">添加</button>
 <div style="clear:both""></div>
-<include href="q2/add.html" />
+<include href="q9/add.html" />
 <hr style="clear:both;margin:5px"/>
 

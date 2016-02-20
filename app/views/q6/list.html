@@ -1,14 +1,15 @@
 <div style="margin-left:1px;margin-right:1px; display:block; float:left" class="col-sm-10">
-<h3>所获奖励与成果鉴定</h3>
+<h3>发表文章</h3>
 <table class="table table-hover table-bordered__ table-condensed sortable" >
     <thead style="background-color:lightgrey">
     <tr>
-        <th scope="col">标题</th>
+        <th scope="col">文章名称</th>
         <th scope="col">作者</th>
+        <th scope="col">刊物名称 </th>
         <th scope="col">年月</th>
-        <th scope="col">颁奖单位</th>
-        <th scope="col">获奖名称</th>
-        <th scope="col" >级别</th>
+        <th scope="col">期刊页码</th>
+        <th scope="col">文章类别</th>
+        <th scope="col">影响因子</th>
         <th scope="col"></th> <!-- attachment -->
         <th scope="col"></th> <!-- actions -->
     </tr>
@@ -28,23 +29,24 @@
             </check>
             </td>
             <td>{{ trim(@article.author) }}</td>
-            <td>{{ trim(@article.publish_year) .' '. trim(@article.publish_month)}}</td>
             <td>{{ trim(@article.publisher) }}</td>
-            <td>{{ trim(@article.award_name) }}</td>
+            <td>{{ trim(@article.publish_year) .' '. trim(@article.publish_month)}}</td>
+            <td>{{ trim(@article.publish_page) }}</td>
             <td>{{ trim(@article.level) }}</td>
+            <td>{{ trim(@article.effect_factor) }}</td>
             <td>    
                 <check if="{{ trim(@article.attachment_name) }}">
                     <true>
-                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/q1/'. @article.id }}" title="下载附加文件"></a>
+                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/q6/'. @article.id }}" title="下载附加文件"></a>
                     </true>
                 </check>
             </td>
             <td>
-                <a href="{{ @BASE.'/update/q1/'. @article.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+                <a href="{{ @BASE.'/update/q6/'. @article.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
 <!-- 
 "app/controllers/ArticleController.php"                <a href="{{ @BASE.'/article/duplicate/'. @article.id }}" class="glyphicon glyphicon-duplicate" title="复制"></a> 
 -->
-                <a href="{{ @BASE.'/delete/q1/'. @article.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+                <a href="{{ @BASE.'/delete/q6/'. @article.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
         </tr>
     </repeat>
     </tbody>
@@ -55,6 +57,6 @@
 
 <div style="clear:both""></div>
 
-<include href="articles/add.html" />
+<include href="q6/add.html" />
 <hr style="clear:both;margin:5px"/>
 

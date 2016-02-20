@@ -59,6 +59,12 @@ Class ArticleController extends BaseController {
 		
 		if($this->f3->exists('POST.addArticle'))
 		{
+
+			if (isset ($_POST['description'])) {
+				//$_POST['description'] = str_replace(array('.', ' ', "\n", "\t", "\r"), '', $_POST['description'] );
+				$_POST['description'] = str_replace(array("\n", "\t", "\r"), '', $_POST['description'] );
+			}
+			
 			$article = new Article($this->db, $db_table_name, MyConst::$cols[$table]);
 			$article->add();
 			
@@ -114,12 +120,19 @@ Class ArticleController extends BaseController {
 	{
 	    
 		$table = MyConst::$tables[$param['table']];
-		$cols = MyConst::$cols[$prarm['table']];
+		$cols = MyConst::$cols[$param['table']];
 		
 		$article = new Article($this->db, $table, $cols);
 		
 		if($this->f3->exists('POST.updateArticle'))
 		{
+
+			if (isset ($_POST['description'])) {
+				$_POST['description'] = str_replace(array('.', ' ', "\n", "\t", "\r"), '', $_POST['description'] );
+			}
+			
+				
+			
 			$this->updateAttachment($table);
 			
 			$article->edit($this->f3->get('POST.id'));
@@ -130,8 +143,8 @@ Class ArticleController extends BaseController {
 			$article->getById($this->f3->get('PARAMS.id'));
 			$this->f3->set('article',$article);
 			$this->f3->set('view',"/$table/update.html");
+    		echo Template::instance()->render('layout.htm');
 		}
-		echo Template::instance()->render('layout.htm');
 	}
 	
 	private function updateAttachment($table_name){

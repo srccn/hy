@@ -1,0 +1,48 @@
+<div style="margin-left:1px;margin-right:1px" class="col-sm-9">
+<h3>制定技术规程</h3>
+<table class="table table-hover table-bordered__ table-condensed sortable" >
+    <thead style="background-color:lightgrey">
+    <tr>
+        <th scope="col">规程名称</th>
+        <th scope="col">规程编写单位</th>
+        <th scope="col">编写时间</th>
+        <th scope="col"></th> <!-- attachment -->
+        <th scope="col"></th> <!-- actions -->
+    </tr>
+    </thead>
+ 
+    <tbody>
+    <repeat group="{{ @articles }}" value="{{ @item }}">
+        <tr>
+            <td>
+            <check if="{{trim(@item.ref_url)}}">
+                <true>
+                    <a href="{{trim(@item.ref_url)}}" target="_blank">{{ trim(@item.title) }} </a>
+                </true>
+                <false>
+                    {{ trim(@item.title) }}
+                </false>
+            </check>
+            </td>
+            <td>{{ trim(@item.auth_by) }}</td>
+            <td>{{ trim(@item.auth_year) .' '.  trim(@item.auth_month)}}</td>
+            <td>    
+                <check if="{{ trim(@item.attachment_name) }}">
+                    <true>
+                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/q5/'. @item.id }}" title="下载附加文件"></a>
+                    </true>
+                </check>
+            </td>
+            <td>
+                <a href="{{ @BASE.'/update/q5/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+                <a href="{{ @BASE.'/delete/q5/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+        </tr>
+    </repeat>
+    </tbody>
+ 
+</table>
+<button id="addArticleBtn" class="btn btn-primary" style="float:left;margin:5px">添加</button>
+<div style="clear:both""></div>
+<include href="q5/add.html" />
+<hr style="clear:both;margin:5px"/>
+
