@@ -5,7 +5,7 @@
         <span class="brand-name">国家农业科技项目</span>
         <h1>科研成果汇总</h1>
         <div class="brand-name" style="clear:both;">
-        <check if="{{@SESSION[username]}}">
+        <check if="{{@SESSION[username] && ! @SESSION[is_admin] }} ">
             <true>
 		        <check if="{{@SESSION[submit_date]}}">
 		            <true>
@@ -28,9 +28,20 @@
 		        </check>
             </true>
             <false>
-		        <div  style="display: block;  _width:200px; margin-left: auto;   margin-right: auto; margin-top:80px; margin-bottom:80px">
-		              <include href="signin.htm">
-		        </div>
+               <check if="{{@SESSION[username] && @SESSION[is_admin] }} ">
+                   <true>
+                       <div class="text-center" style="margin-top:40px;margin-bottom:40px">
+    		              <a class="btn btn-lg btn-default btn-block_ _col-sm-2" href="{{@BASE.'/list/q1'}}" style="min-width:150px">查看分项科研成果</a>
+			              <a class="btn btn-lg btn-default btn-block_ _col-sm-2" href="{{@BASE.'/report'}}" style="min-width:150px;">查看汇总</a>
+			              <a class="btn btn-lg btn-default btn-block_ _col-sm-2" href="{{@BASE.'/useradmin'}}" style="min-width:150px;">用户管理</a>
+			           </div>
+                   </true>
+                   <false>
+				       <div  style="display: block;  _width:200px; margin-left: auto;   margin-right: auto; margin-top:80px; margin-bottom:80px">
+				             <include href="signin.htm">
+				       </div>
+                   </false>
+               </check>
             </false>
         </check>
         </div>

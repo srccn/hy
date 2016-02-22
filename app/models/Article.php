@@ -8,7 +8,12 @@ class Article extends DB\SQL\Mapper {
 		if ($_SESSION['userid']) {
 			$userId = $_SESSION['userid'];
 			$_POST['user_id']= $userId;
-			$this->filter='user_id = ' . $userId;
+			
+			if ($_SESSION['is_admin']) {
+				$this->filter=null;
+			} else {
+				$this->filter='user_id = ' . $userId;
+			}
 		}
 		parent::__construct($db, $table_name, $cols );
 	}
@@ -40,11 +45,16 @@ class Article extends DB\SQL\Mapper {
 	}	
 
 	public function addFilter($filterString){
-		$this->filter = $this->filter." and ".$filterString;
+		
+		if (isset($this->filter) && $this->filter != '') {
+			$this->filter = $this->filter." and ".$filterString;
+		} else {
+			$this->filter = $filterString;
+		}
 	}
 
 	public function removeFiler(){
-		$this->filter="";
+		$this->filter=null;
 	}
 	
 }
