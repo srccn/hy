@@ -7,6 +7,7 @@
         <th scope="col" >单位名</th>
         <th scope="col">电子邮件地址</th>
         <th scope="col">电话号码</th>
+        <th scope="col" >参与项目</th>
         <th scope="col">激活状态</th>
         <th scope="col">提交日期</th>
         <th scope="col" >是否管理员</th>
@@ -21,11 +22,13 @@
             <td>{{ trim(@user.org_name) }} </td>
             <td>{{ trim(@user.email) }}</td>
             <td>{{ trim(@user.phone) }}</td>
+            <td>{{ trim(@user.project) }}</td>
             <td>{{ trim(@user.is_active) ? 'True':'False'  }}</td>
             <td>{{ trim(@user.submit_date) }}</td>
             <td>{{ trim(@user.is_admin) ? 'True':'False' }}</td>
 		    <td>
-	                <a href="{{ @BASE.'/admin/updateuser/'. @user.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+	                <a href="{{ @BASE.'/updateuser/'. @user.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+	                <a href="{{ @BASE.'/deleteuser/'. @user.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
             </td>    
         </tr>
     </repeat>
@@ -34,11 +37,11 @@
 </table>
 
 <check if="{{@SESSION[is_admin]}}">
-    <false>
+    <true>
     <button id="addUserBtn" class="btn btn-primary" style="float:left;margin:5px">添加</button>
-    </false>
+    </true>
 </check>
 <div style="clear:both""></div>
-
+<include href="user/add.html" />
 <hr style="clear:both;margin:5px"/>
 

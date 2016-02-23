@@ -10,10 +10,14 @@ class UserController extends BaseController {
 	
 	function addUser(){
 		$name=$this->f3->POST['username'];
+		$org_name = $this->f3->POST['org_name'];
 		$email = $this->f3->POST['email'];
+		$project = $this->f3->POST['project'];
 		//$passwrod = Util::hashString($this->f3->POST['password']);
 		$passwrod = $this->f3->POST['password'];
 		$phone = $this->f3->POST['phone'];
+		$is_active = $this->f3->POST['is_active'];
+		$is_admin = $this->f3->POST['is_admin'];
 		$timeStamp = time();
 	
 		//check user existence
@@ -21,30 +25,30 @@ class UserController extends BaseController {
 		$result = $this->runQuery($query);
 	
 		if ($result[0]['result'] > 0 ) {
-			$this->f3->set('message', 'User name is already exist, try to choose antoher name.')	;
+			$this->f3->set('message', '登入名已存在，请选择其他登入名.')	;
+			$this->f3->set('showMenu',false);
 			$this->f3->set('view','home.htm');
 			echo Template::instance()->render('layout.htm');
+			die;
 		} else {
 			$query = "
 			INSERT into users
-			(name, email,password,regdate,phone)
-			VALUES ('$name' , '$email', '$passwrod', $timeStamp, '$phone')
+			(name, org_name,password,regdate,email, phone, project, is_active, is_admin)
+			VALUES ('$name' , '$org_name', '$passwrod', $timeStamp, '$email', '$phone','$project', $is_active, $is_admin)
 			" ;
 			$this->runQuery($query);
-
-			//acqure id
-			$query = "
-				SELECT id
-				FROM   users
-				WHERE  name = '$name'
-			";
-			$result=$this->runQuery($query);
-			$userId = $result[0]['id'];
 			
-			$this->f3->SESSION['username'] = $name;
-			$this->f3->SESSION['userid'] = $userId;
-			$this->f3->reroute('/home');
- 		}
+			$this->f3->reroute('/useradmin');
+		}
+	}
+	
+	function delete(){
+		if($this->f3->exists('PARAMS.id'))
+		{
+			$user = new User($this->db);
+			$user->delete($this->f3->get('PARAMS.id'));
+		}
+		$this->f3->reroute('/useradmin');
 	}
 	
 	function signout() {
@@ -53,6 +57,31 @@ class UserController extends BaseController {
 		//Util::dump($this->f3->SESSION);
 		$this->f3->reroute('/');
 	}
+	
+	public function update()
+	{
+		$user = new User($this->db);
+	
+		if($this->f3->exists('POST.updateUser')) {
+			
+			// turn empty enter into null for submi_date
+			if (trim($this->f3->get('POST.submit_date') )== '') {
+				$this->f3->set('POST.submit_date', null);
+			}
+			
+			$name = $this->f3->get('POST.username');
+			$this->f3->set('POST.name', $name);
+			
+			$user->edit($this->f3->get('POST.id'));
+			$this->f3->reroute('/useradmin');
+		} else {
+			$user->getById($this->f3->get('PARAMS.id'));
+			$this->f3->set('user',$user);
+			$this->f3->set('showMenu',false);
+			$this->f3->set('view',"/user/update.html");
+			echo Template::instance()->render('layout.htm');
+		}
+	}	
 	
 	function verifysignin () {
 		if (! empty ( $this->f3->POST)) {
