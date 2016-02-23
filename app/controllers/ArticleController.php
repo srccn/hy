@@ -14,10 +14,9 @@ Class ArticleController extends BaseController {
 		    die();
 		}
 		
-		if (isset($this->f3->SESSION['submit_date'])){ //submitted send user back to home page
+		if (isset($this->f3->SESSION['submit_date']) && ! $this->f3->SESSION['is_admin'] ){ //submitted send user back to home page, admin exception
 			$this->f3->set('message', '不能修改已提交内容，请联系系统管理人员.');
 			$this->f3->set('showMenu',false);
-//			$this->f3->reroute('@home');
 			$this->f3->set('view','home.htm');
 			echo Template::instance()->render('layout.htm');
 			die();
