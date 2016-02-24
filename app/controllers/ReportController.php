@@ -2,7 +2,11 @@
 class ReportController extends BaseController{
 	
 	private $report = array(); 
+	private $report_filter='';
 	
+	function setReportFilter($filterString){
+		$this->report_filter = $filterString;
+	}
 	
 	function getReport(){
 	
@@ -16,64 +20,76 @@ class ReportController extends BaseController{
 		
 		//g1_answer1
 		$article = new Article($this->db, MyConst::$tables['q1'], $this->trimUserId(MyConst::$reportCols['q1']) );
+		$article->addFilter($this->report_filter);
 		$article->addFilter("level='国家级'") ;
 		$report['g1_answer1'] = $article->all();
 		
 		//g1_answer2
 		$article = new Article($this->db, MyConst::$tables['q1'], $this->trimUserId(MyConst::$reportCols['q1']) );
+		$article->addFilter($this->report_filter);
 		$article->addFilter("level='省部级'") ;
 		$report['g1_answer2'] = $article->all();
 
 		//g2_answer
 		$article = new Article($this->db, MyConst::$tables['q2'], $this->trimUserId(MyConst::$reportCols['q2']) );
+		$article->addFilter($this->report_filter);
 		$report['g2_answer'] = $article->all();
 		
 		//g3_answer1
 		$article = new Article($this->db, MyConst::$tables['q3'], $this->trimUserId(MyConst::$reportCols['q3']) );
+		$article->addFilter($this->report_filter);
 		$article->addFilter("category='已获得新品种保护'") ;
 		$report['g3_answer1'] = $article->all();
 		
 		//g3_answer2
 		$article = new Article($this->db, MyConst::$tables['q3'], $this->trimUserId(MyConst::$reportCols['q3']) );
+		$article->addFilter($this->report_filter);
 		$article->addFilter("category='申请中新品种保护'") ;
 		$report['g3_answer2'] = $article->all();
 
 		//g4_answer
 		$article = new Article($this->db, MyConst::$tables['q4'], $this->trimUserId(MyConst::$reportCols['q4']) );
+		$article->addFilter($this->report_filter);
 		$report['g4_answer'] = $article->all();
 
 		//g5_answer
 		$article = new Article($this->db, MyConst::$tables['q5'], $this->trimUserId(MyConst::$reportCols['q5']) );
+		$article->addFilter($this->report_filter);
 		$report['g5_answer'] = $article->all();
 
 		//g6_answer1
 		$article = new Article($this->db, MyConst::$tables['q6'], $this->trimUserId(MyConst::$reportCols['q6']) );
+		$article->addFilter($this->report_filter);
 		$article->addFilter("level='SCI文章'") ;
 		$report['g6_answer1'] = $article->all();
 		
 		//g6_answer2
 		$article = new Article($this->db, MyConst::$tables['q6'], $this->trimUserId(MyConst::$reportCols['q6']) );
+		$article->addFilter($this->report_filter);
 		$article->addFilter("level='核心期刊文章'") ;
 		$report['g6_answer2'] = $article->all();
 		
 		//g7_answer
 		$article = new Article($this->db, MyConst::$tables['q7'], $this->trimUserId(MyConst::$reportCols['q7']) );
+		$article->addFilter($this->report_filter);
 		$report['g7_answer'] = $article->all();
 		
 		//g8_answer1
 		$article = new Article($this->db, MyConst::$tables['q8'], $this->trimUserId(MyConst::$reportCols['q8']) );
+		$article->addFilter($this->report_filter);
 		$article->addFilter("category='发明专利'") ;
 		$report['g8_answer1'] = $article->all();
 		
 		//g8_answer2
 		$article = new Article($this->db, MyConst::$tables['q8'], $this->trimUserId(MyConst::$reportCols['q8']) );
+		$article->addFilter($this->report_filter);
 		$article->addFilter("category='实用新型号专利'") ;
 		$report['g8_answer2'] = $article->all();
 
 		//g9_answer
 		$article = new Article($this->db, MyConst::$tables['q9'], $this->trimUserId(MyConst::$reportCols['q9']) );
+		$article->addFilter($this->report_filter);
 		$report['g9_answer'] = $article->all();
-		
 		
 		return $report;
 	}

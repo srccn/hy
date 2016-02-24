@@ -46,6 +46,10 @@ class Article extends DB\SQL\Mapper {
 
 	public function addFilter($filterString){
 		
+		if (trim($filterString) == '' ){
+			return; //nothing to add
+		}
+		
 		if (isset($this->filter) && $this->filter != '') {
 			$this->filter = $this->filter." and ".$filterString;
 		} else {
