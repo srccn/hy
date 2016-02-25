@@ -4,8 +4,29 @@ class ReportController extends BaseController{
 	private $report = array(); 
 	private $report_filter='';
 	
-	function setReportFilter($filterString){
-		$this->report_filter = $filterString;
+	function setReportFilter(){
+		
+		if ( $this->f3->get('POST.wuzhong') != null) {
+
+			if ( $this->f3->get('POST.wuzhong') != 'ALL'  )  {
+			$query = "
+		    		SELECT id
+		    		  FROM users
+		    		 WHERE project = '" . $this->f3->get('POST.wuzhong') . "';
+		    		";
+		    
+		    $result = $this->runQuery($query);
+		    
+		    $userList = array();
+		    
+		    foreach ($result as $row) {
+		    	array_push ($userList, $row['id']);
+		    }
+		    
+		    $this->report_filter = "user_id in ( " . implode(',', $userList) . ")" ;
+			}
+		}
+		
 	}
 	
 	function getReport(){
@@ -96,9 +117,15 @@ class ReportController extends BaseController{
 	
 	
 	function generatePageBody(){
+		
+		if ($this->f3->get('POST.applyfilter')) {
+			$this->setReportFilter();		
+		}
+		
 		$report = $this->getReport();
 		
 $doc_body ='
+<div class="container">		
 <h3>登入：'.$this->f3->get('SESSION[username]'). '</h3> 		
 <h1>成果汇总</h1>
 <h3>1.获奖项目</h3>
@@ -174,6 +201,7 @@ $doc_body ='
       $this->getArrayList($report['g9_answer']) .
   '</ol>
 
+</div>      		
 ';
 
         return $doc_body  ;
