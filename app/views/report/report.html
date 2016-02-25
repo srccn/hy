@@ -1,8 +1,9 @@
 <div id="report_buttones" class="container" >
 		<form name="create_doc" action="{{@BASE}}/downloadreport" method="post" class="form-group row col-sm-2" style="float:left">
-		  <input type="submit" name="submit_doc" value="下载 MS Word" class="btn btn-info"/>
+		    <input type="hidden" name="wuzhong" value="{{@report_filter}}">
+		    <input type="submit" name="submit_doc" value="下载 MS Word" class="btn btn-info"/>
 		</form>				
-        
+         
         <check if="{{@SESSION[submit_date]}}">
             <false>
                 <check if="{{@SESSION[is_admin]}}">

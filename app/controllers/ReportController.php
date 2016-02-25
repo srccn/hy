@@ -118,9 +118,9 @@ class ReportController extends BaseController{
 	
 	function generatePageBody(){
 		
-		if ($this->f3->get('POST.applyfilter')) {
+//		if ($this->f3->get('POST.applyfilter')) {
 			$this->setReportFilter();		
-		}
+//		}
 		
 		$report = $this->getReport();
 		

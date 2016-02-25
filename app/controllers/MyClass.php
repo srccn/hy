@@ -40,7 +40,7 @@ class MyClass extends BaseController {
 //			echo $submit_button;
 //		}
 		
-//		$this->f3->set('reportBody', $myReportController->generatePageBody() );
+		$this->f3->set('report_filter', $_POST['wuzhong']);
 		$this->f3->set('view', 'report/report.html');
 		
 		$this->f3->set('showMenu',false);
