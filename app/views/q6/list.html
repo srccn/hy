@@ -25,9 +25,9 @@
     <repeat group="{{ @articles }}" value="{{ @item }}">
         <tr>
             <td>
-            <check if="{{trim(@article.ref_url)}}">
+            <check if="{{trim(@item.ref_url)}}">
                 <true>
-                    <a href="{{trim(@article.ref_url)}}" target="_blank">{{ trim(@article.title) }} </a>
+                    <a href="{{trim(@item.ref_url)}}" target="_blank">{{ trim(@item.title) }} </a>
                 </true>
                 <false>
                     {{ trim(@item.title) }}
@@ -36,20 +36,20 @@
             </td>
             <td>{{ trim(@item.author) }}</td>
             <td>{{ trim(@item.publisher) }}</td>
-            <td>{{ trim(@item.publish_year) .' '. trim(@article.publish_month)}}</td>
+            <td>{{ trim(@item.publish_year) .' '. trim(@item.publish_month)}}</td>
             <td>{{ trim(@item.publish_page) }}</td>
             <td>{{ trim(@item.level) }}</td>
             <td>{{ trim(@item.effect_factor) }}</td>
             <td>    
-                <check if="{{ trim(@article.attachment_name) }}">
+                <check if="{{ trim(@item.attachment_name) }}">
                     <true>
-                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/q6/'. @article.id }}" title="下载附加文件"></a>
+                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/q6/'. @item.id }}" title="下载附加文件"></a>
                     </true>
                 </check>
             </td>
 	        <check if="{{@SESSION[is_admin]}}">
 	            <true>
-	                <td>{{  UserController::setAllIdNamePares()[trim(@article.user_id)] }}</td>
+	                <td>{{  UserController::setAllIdNamePares()[trim(@item.user_id)] }}</td>
 	            </true>
 	            <false>
 		          <td>

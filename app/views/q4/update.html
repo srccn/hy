@@ -25,9 +25,9 @@
 	          </div>
 	      </fieldset>    
 	      <fieldset>    
-	          <label for="auth_year" class="col-sm-1 form-control-label">发布时间:</label>
+	          <label for="publish_year" class="col-sm-1 form-control-label">发布时间:</label>
 	          <div class="col-sm-4">
-	              <select name="auth_year" id="auth_year">
+	              <select name="publish_year" id="publish_year">
 	                  <option value="2016">2016</option>
 	                  <option value="2015">2015</option>
 	                  <option value="2014">2014</option>
@@ -36,7 +36,7 @@
 	                  <option value="2011">2011</option>
 	                  <option value="2010">2010</option>
 	              </select>年
-	              <select name="auth_month" id="auth_month">
+	              <select name="publish_month" id="publish_month">
 	                  <option value="01">01</option>
 	                  <option value="02">02</option>
 	                  <option value="03">03</option>
@@ -90,8 +90,8 @@
 document.getElementById('title').value = "{{ trim(@POST.title) }}" ;
 document.getElementById('auth_by').value = "{{ trim(@POST.auth_by) }}" ;
 document.getElementById('auth_code').value = "{{ trim(@POST.auth_code) }}" ;
-document.getElementById('auth_year').value = "{{ trim(@POST.auth_year) }}" ;
-document.getElementById('auth_month').value = "{{ trim(@POST.auth_month) }}" ;
+document.getElementById('publish_year').value = "{{ trim(@POST.publish_year) }}" ;
+document.getElementById('publish_month').value = "{{ trim(@POST.publish_month) }}" ;
 document.getElementById('author').value = "{{ trim(@POST.author) }}" ;
 
 </script>
