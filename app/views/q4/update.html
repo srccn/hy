@@ -19,8 +19,14 @@
 	          <div class="col-sm-3">
 	          <input type="text" name="auth_code" id="auth_code" placeholder="标准编号" class="form-control">
 	          </div>
-	          <label for="auth_year" class="col-sm-1 form-control-label">日期:</label>
-	          <div class="col-sm-2">
+	          <label for="author" class="col-sm-2 form-control-label">编写单位:</label>
+	          <div class="col-sm-3">
+	          <input type="text" name="author" id="author" placeholder="编写单位" class="form-control">
+	          </div>
+	      </fieldset>    
+	      <fieldset>    
+	          <label for="auth_year" class="col-sm-1 form-control-label">发布时间:</label>
+	          <div class="col-sm-4">
 	              <select name="auth_year" id="auth_year">
 	                  <option value="2016">2016</option>
 	                  <option value="2015">2015</option>
@@ -44,6 +50,7 @@
 	                  <option value="11">11</option>
 	                  <option value="12">12</option>
 	              </select>月
+	          </div>
           </fieldset>
           <fieldset class="form-group">
           
@@ -85,5 +92,6 @@ document.getElementById('auth_by').value = "{{ trim(@POST.auth_by) }}" ;
 document.getElementById('auth_code').value = "{{ trim(@POST.auth_code) }}" ;
 document.getElementById('auth_year').value = "{{ trim(@POST.auth_year) }}" ;
 document.getElementById('auth_month').value = "{{ trim(@POST.auth_month) }}" ;
+document.getElementById('author').value = "{{ trim(@POST.author) }}" ;
 
 </script>

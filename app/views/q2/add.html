@@ -24,6 +24,38 @@
 	          <input type="text" name="certified_by" id="certified_by" placeholder="审定/认定单位" class="form-control">
 	          </div>
           </fieldset>
+
+        <fieldset class="form-group">
+	          <label for="publish_year" class="col-sm-2 form-control-label">审定或鉴定时间:</label>
+	          <div class="col-sm-4">
+	              <select name="publish_year" id="publish_year">
+	                  <option value="2016">2016</option>
+	                  <option value="2015">2015</option>
+	                  <option value="2014">2014</option>
+	                  <option value="2013">2013</option>
+	                  <option value="2012">2012</option>
+	                  <option value="2011">2011</option>
+	                  <option value="2010">2010</option>
+	              </select>年
+	              <select name="publish_month" id="publish_month">
+	                  <option value="01">01</option>
+	                  <option value="02">02</option>
+	                  <option value="03">03</option>
+	                  <option value="04">04</option>
+	                  <option value="05">05</option>
+	                  <option value="06">06</option>
+	                  <option value="07">07</option>
+	                  <option value="08">08</option>
+	                  <option value="09">09</option>
+	                  <option value="10">10</option>
+	                  <option value="11">11</option>
+	                  <option value="12">12</option>
+	              </select>月
+	              <input type="hidden" name="publish_year_month" id="publish_year_month" placeholder="审定或鉴定时间" class="form-control">
+              </div>
+          </fieldset>
+          
+          
           <fieldset class="form-group">
 
 	          <label for="attachment" class="col-sm-1 form-control-label">附加文件:</label>
@@ -33,7 +65,7 @@
 
 		  </fieldset>
 
-          <input type="submit" name="addArticle" class="btn btn-primary" style="float:left" value="提交" >
+          <input type="submit" name="addArticle" class="btn btn-primary" style="float:left" value="确认" >
       </form>
     </div>
 </div>

@@ -6,7 +6,7 @@
         <th scope="col">文章名称</th>
         <th scope="col">作者</th>
         <th scope="col">刊物名称 </th>
-        <th scope="col">年月</th>
+        <th scope="col">出版时间</th>
         <th scope="col">期刊页码</th>
         <th scope="col">文章类别</th>
         <th scope="col">影响因子</th>
@@ -22,7 +22,7 @@
     </thead>
  
     <tbody>
-    <repeat group="{{ @articles }}" value="{{ @article }}">
+    <repeat group="{{ @articles }}" value="{{ @item }}">
         <tr>
             <td>
             <check if="{{trim(@article.ref_url)}}">
@@ -30,16 +30,16 @@
                     <a href="{{trim(@article.ref_url)}}" target="_blank">{{ trim(@article.title) }} </a>
                 </true>
                 <false>
-                    {{ trim(@article.title) }}
+                    {{ trim(@item.title) }}
                 </false>
             </check>
             </td>
-            <td>{{ trim(@article.author) }}</td>
-            <td>{{ trim(@article.publisher) }}</td>
-            <td>{{ trim(@article.publish_year) .' '. trim(@article.publish_month)}}</td>
-            <td>{{ trim(@article.publish_page) }}</td>
-            <td>{{ trim(@article.level) }}</td>
-            <td>{{ trim(@article.effect_factor) }}</td>
+            <td>{{ trim(@item.author) }}</td>
+            <td>{{ trim(@item.publisher) }}</td>
+            <td>{{ trim(@item.publish_year) .' '. trim(@article.publish_month)}}</td>
+            <td>{{ trim(@item.publish_page) }}</td>
+            <td>{{ trim(@item.level) }}</td>
+            <td>{{ trim(@item.effect_factor) }}</td>
             <td>    
                 <check if="{{ trim(@article.attachment_name) }}">
                     <true>
@@ -53,8 +53,8 @@
 	            </true>
 	            <false>
 		          <td>
-	                <a href="{{ @BASE.'/update/q6/'. @article.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
-	                <a href="{{ @BASE.'/delete/q6/'. @article.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+	                <a href="{{ @BASE.'/update/q6/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+	                <a href="{{ @BASE.'/delete/q6/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
                   </td>    
               </false>
 	        </check>

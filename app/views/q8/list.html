@@ -8,6 +8,7 @@
         <th scope="col">专利编号</th>
         <th scope="col">第一发明单位</th>
         <th scope="col">专利类别</th>
+        <th scope="col">申请或者获得时间</th>
         <th scope="col"></th> <!-- attachment -->
         <check if="{{@SESSION[is_admin]}}">
             <true>
@@ -36,6 +37,7 @@
             <td>{{ trim(@item.patent_code) }}</td>
             <td>{{ trim(@item.org_name)}}</td>
             <td>{{ trim(@item.category)}}</td>
+            <td>{{ trim(@item.publish_year) .' '.  trim(@item.publish_month) }}</td>
             <td>    
                 <check if="{{ trim(@item.attachment_name) }}">
                     <true>
@@ -49,8 +51,8 @@
 	            </true>
 	            <false>
 		          <td>
-	                <a href="{{ @BASE.'/update/q8/'. @article.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
-	                <a href="{{ @BASE.'/delete/q8/'. @article.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+	                <a href="{{ @BASE.'/update/q8/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+	                <a href="{{ @BASE.'/delete/q8/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
                   </td>    
               </false>
 	        </check>

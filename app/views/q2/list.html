@@ -5,8 +5,9 @@
     <tr>
         <th scope="col">作物名</th>
         <th scope="col">品种名</th>
-        <th scope="col">审定号</th>
+        <th scope="col">审定或鉴定号</th>
         <th scope="col">审定单位</th>
+        <th scope="col">审定或鉴定时间</th>
         <th scope="col"></th> <!-- attachment -->
         <check if="{{@SESSION[is_admin]}}">
             <true>
@@ -34,6 +35,7 @@
             <td>{{ trim(@item.pinzhong_name) }}</td>
             <td>{{ trim(@item.certification_code) }}</td>
             <td>{{ trim(@item.certified_by) }}</td>
+            <td>{{ trim(@item.publish_year) .' '. trim(@item.publish_month) }} </td>
             <td>    
                 <check if="{{ trim(@item.attachment_name) }}">
                     <true>
@@ -47,8 +49,8 @@
 	            </true>
 	            <false>
 		          <td>
-	                <a href="{{ @BASE.'/update/q2/'. @article.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
-	                <a href="{{ @BASE.'/delete/q2/'. @article.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+	                <a href="{{ @BASE.'/update/q2/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+	                <a href="{{ @BASE.'/delete/q2/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
                   </td>    
               </false>
 	        </check>
