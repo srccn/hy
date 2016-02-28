@@ -1,0 +1,14 @@
+<div class="container">
+   <div id="bulkLoadFrm" style="display:none; width:100%;">
+
+      <form method="post" action="{{@BASE.'/bulkload/'.@VIEWTABLE}}" class="form-group row" ENCTYPE="multipart/form-data">
+          <fieldset class="form-group">
+	          <label for="title" class="col-sm-1 form-control-label">内容:</label>
+	          <div class="col-sm-10">
+	          <textarea type="text" name="bulk_content" id="bulk_content" placeholder="必须是从EXCEL贴敷的表格内容, 包括表头。请使用专用的EXCEL。" class="form-control "></textarea>
+	          </div>
+          </fieldset>
+          <input type="submit" name="bulkload" class="btn btn-primary" style="float:left" value="确认批量添加" >
+      </form>
+    </div>
+</div>

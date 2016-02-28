@@ -34,7 +34,7 @@ Class ArticleController extends BaseController {
 				
 //		$q2 = new Article($this->db, MyConst::$tables["Q2"], MyConst::$cols["Q2"]);
 //		$this->f3->set('q2',$q2->all());
-		
+		$this->f3->set('VIEWTABLE', $table);
 		$this->f3->set('view',"$db_table_name/list.html");
 		echo Template::instance()->render('layout.htm');
 	}
@@ -70,6 +70,7 @@ Class ArticleController extends BaseController {
 			$id = $article->id;
 			
 			$this->f3->set('POST.id', $id);
+			$this->f3->set('VIEWTABLE',$param['table']);		
 			$this->updateAttachment($db_table_name);
 			$this->f3->reroute('/list/'.$table);
 	
@@ -141,6 +142,8 @@ Class ArticleController extends BaseController {
 		{
 			$article->getById($this->f3->get('PARAMS.id'));
 			$this->f3->set('article',$article);
+		    
+			$this->f3->set('VIEWTABLE', $param['table']);
 			$this->f3->set('view',"/$table/update.html");
     		echo Template::instance()->render('layout.htm');
 		}
@@ -227,6 +230,36 @@ Class ArticleController extends BaseController {
 		header("Content-Disposition: attachment; filename=\"" . stripslashes($name) ."\"" );
 		echo ($content);
 		
+	}
+	
+	function bulkload($f3, $param) {
+		
+		$user_id = $this->f3->get('SESSION.userid');
+        $content =  $this->f3->get('POST.bulk_content');
+        $table = $param['table'];
+        
+        $rows = explode("\n", $content);
+        $num_rows = count($rows);
+        
+        for( $i= 1 ; $i<$num_rows; $i++ ) { //start from 1, to skip first row - that is header
+        	
+        	if (trim($rows[$i]) != '') {
+	        	$fields = explode("\t", $rows[$i]); 
+	        	//check number of fields
+	        	if (count($fields) + 1 != count( explode("," ,MyConst::$bulkInputCols[$param['table']]) ) ) {
+	        		echo MyConst::$bulkInputCols[$param['table']] ."<br>";
+	        		echo "输入的列数与数据库中列数不匹配，批量录入失败，请检查格式，再重试。";
+	        		die;
+	        	}
+	        	$query = "INSERT INTO " . MyConst::$tables[$param['table']] ." (" . MyConst::$bulkInputCols[$param['table']] .") 
+	        			  VALUES ('" . implode("','", $fields) . "', " . $user_id . "  );" ;
+	        	echo "$query <br>";
+	        	$result = $this->runQuery($query);
+        	}
+        }
+		
+        $this->f3->reroute("/list/".$param['table']);
+        
 	}
 	
 }

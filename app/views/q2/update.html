@@ -1,7 +1,7 @@
 <div class="container">
    <h3>品种审定（鉴定)</h3>
    <div id="updateArticleFrm" style="display_:none; width:100%;">
-      <form name="update" method="post" action="{{@BASE.'/update/q2'}}" class="form-group row" enctype="multipart/form-data"">
+      <form name="update" method="post" action="{{@BASE.'/update/'.@VIEWTABLE}}" class="form-group row" enctype="multipart/form-data"">
           <fieldset class="form-group">
 	          <label for="zuowu_name" class="col-sm-2 form-control-label">作物名:</label>
 	          <div class="col-sm-8">
@@ -59,7 +59,7 @@
 	              <check if="{{ trim(@POST.attachment_name) }}">
 	                  <true>
                           <label for="attachment" class="col-sm-6 form-control-label">现有附加文件:
-                              <a href="{{@BASE.'/download_attachment/q2/'. @POST.id }}">{{ trim(@POST.attachment_name) }}</a>
+                              <a href="{{@BASE.'/download_attachment/'.@VIEWTABLE.'/'. @POST.id }}">{{ trim(@POST.attachment_name) }}</a>
                               <div class="checkbox">
                                   <label><input type="checkbox" name="removeAttachment" value="1">删除附加文件</label>
                               </div>
