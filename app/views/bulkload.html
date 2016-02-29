@@ -5,7 +5,8 @@
           <fieldset class="form-group">
 	          <label for="title" class="col-sm-1 form-control-label">内容:</label>
 	          <div class="col-sm-10">
-	          <textarea type="text" name="bulk_content" id="bulk_content" placeholder="必须是从EXCEL贴敷的表格内容, 包括表头。请使用专用的EXCEL。" class="form-control "></textarea>
+	              <textarea type="text" name="bulk_content" id="bulk_content" placeholder="必须是从EXCEL贴敷的表格内容, 包括表头行，不包括序号列。可以从下面链接下载Excel模板。" class="form-control "></textarea>
+	              <a href="{{@BASE.'/downloads/template.xls'}}">Excel模板</a> &nbsp &nbsp &nbsp <a href="{{@BASE.'/downloads/s1.avi'}}">操作演示</a>
 	          </div>
           </fieldset>
           <input type="submit" name="bulkload" class="btn btn-primary" style="float:left" value="确认批量添加" >

@@ -81,13 +81,13 @@ class ReportController extends BaseController{
 		//g6_answer1
 		$article = new Article($this->db, MyConst::$tables['q6'], $this->trimUserId(MyConst::$reportCols['q6']) );
 		$article->addFilter($this->report_filter);
-		$article->addFilter("level='SCI文章'") ;
+		$article->addFilter("level like '%SCI%' ") ;
 		$report['g6_answer1'] = $article->all();
 		
 		//g6_answer2
 		$article = new Article($this->db, MyConst::$tables['q6'], $this->trimUserId(MyConst::$reportCols['q6']) );
 		$article->addFilter($this->report_filter);
-		$article->addFilter("level='核心期刊文章'") ;
+		$article->addFilter("level like '%核心%' ") ;
 		$report['g6_answer2'] = $article->all();
 		
 		//g7_answer
