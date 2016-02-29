@@ -34,7 +34,7 @@ Class ArticleController extends BaseController {
 				
 //		$q2 = new Article($this->db, MyConst::$tables["Q2"], MyConst::$cols["Q2"]);
 //		$this->f3->set('q2',$q2->all());
-		$this->f3->set('VIEWTABLE', $table);
+		$this->f3->set('VIEWTABLE', $db_table_name);
 		$this->f3->set('view',"$db_table_name/list.html");
 		echo Template::instance()->render('layout.htm');
 	}

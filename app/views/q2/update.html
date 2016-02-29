@@ -30,7 +30,6 @@
           </fieldset>
           
           <fieldset class="form-group">
-          
 	              <check if="{{ trim(@POST.attachment_name) }}">
 	                  <true>
                           <label for="attachment" class="col-sm-6 form-control-label">现有附加文件:
@@ -48,17 +47,15 @@
   			      <input type="hidden" name="MAX_FILE_SIZE" value="10000000" /> <!-- 10MB -->
 			      <input id="attachment" type="file" name="attachment" >
 			  </div>
-
-
-		  </fieldset>
+		</fieldset>
 		  
-    <div class="control-group">
-        <div class="">
-            <input type="hidden" name="id" value="{{ @POST.id }}" />
-            <input type="hidden" name="updateArticle" value="update" />
-            <button type="submit" class="btn btn-primary"><i class="icon-edit icon-white"></i> 确认</button>
-        </div>
-    </div>
+	    <div class="control-group">
+	        <div class="">
+	            <input type="hidden" name="id" value="{{ @POST.id }}" />
+	            <input type="hidden" name="updateArticle" value="update" />
+	            <button type="submit" class="btn btn-primary"><i class="icon-edit icon-white"></i> 确认</button>
+	        </div>
+	    </div>
     
       </form>
     </div>

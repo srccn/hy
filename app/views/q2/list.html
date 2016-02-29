@@ -15,7 +15,6 @@
             </true>
         </check>
         <th scope="col"></th> <!-- actions -->
-
     </tr>
     </thead>
  
@@ -43,30 +42,20 @@
                     </true>
                 </check>
             </td>
-	        <check if="{{@SESSION[is_admin]}}">
-	            <true>
-	                <td>{{  UserController::setAllIdNamePares()[trim(@item.user_id)] }}</td>
-	            </true>
-	            <false>
-		          <td>
-	                <a href="{{ @BASE.'/update/'.@VIEWTABLE.'/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
-	                <a href="{{ @BASE.'/delete/'.@VIEWTABLE.'/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
-                  </td>    
-              </false>
-	        </check>
+            <td>
+		        <check if="{{@SESSION[is_admin]}}">
+		            <true>
+		                {{  UserController::setAllIdNamePares()[trim(@item.user_id)] }}
+		            </true>
+		            <false>
+		                <a href="{{ @BASE.'/update/'.@VIEWTABLE.'/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+		                <a href="{{ @BASE.'/delete/'.@VIEWTABLE.'/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+	              </false>
+		        </check>
+	        </td>
         </tr>
     </repeat>
     </tbody>
- 
 </table>
-<check if="{{@SESSION[is_admin]}}">
-    <false>
-        <button id="addArticleBtn" class="btn btn-primary" style="float:left;margin:5px">添加</button>
-        <button id="bulkLoadBtn" class="btn btn-primary" style="float:left;margin:5px">批量添加</button>
-    </false>
-</check>
-<div style="clear:both""></div>
-<include href="{{@VIEWTABLE.'/add.html'}}" />
-<include href="bulkload.html" />
-<hr style="clear:both;margin:5px"/>
+<include href="components/list_add_buttons.html" />
 
