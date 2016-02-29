@@ -41,7 +41,7 @@
             <td>    
                 <check if="{{ trim(@item.attachment_name) }}">
                     <true>
-                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/q8/'. @item.id }}" title="下载附加文件"></a>
+                        <a class="glyphicon glyphicon-paperclip" href="{{ @BASE.'/download_attachment/'.@VIEWTABLE.'/'. @item.id }}" title="下载附加文件"></a>
                     </true>
                 </check>
             </td>
@@ -51,8 +51,8 @@
 	            </true>
 	            <false>
 		          <td>
-	                <a href="{{ @BASE.'/update/q8/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
-	                <a href="{{ @BASE.'/delete/q8/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+	                <a href="{{ @BASE.'/update/'.@VIEWTABLE.'/'. @item.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+	                <a href="{{ @BASE.'/delete/'.@VIEWTABLE.'/'. @item.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
                   </td>    
               </false>
 	        </check>
@@ -63,10 +63,12 @@
 </table>
 <check if="{{@SESSION[is_admin]}}">
     <false>
-    <button id="addArticleBtn" class="btn btn-primary" style="float:left;margin:5px">添加</button>
+        <button id="addArticleBtn" class="btn btn-primary" style="float:left;margin:5px">添加</button>
+        <button id="bulkLoadBtn" class="btn btn-primary" style="float:left;margin:5px">批量添加</button>
     </false>
 </check>
 <div style="clear:both""></div>
-<include href="q8/add.html" />
+<include href="{{@VIEWTABLE.'/add.html'}}" />
+<include href="bulkload.html" />
 <hr style="clear:both;margin:5px"/>
 

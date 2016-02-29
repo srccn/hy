@@ -41,12 +41,12 @@ class MyConst {
 	public static $bulkInputCols = array (
 			"q1" => "title,author,publish_year,publish_month,publisher,award_name,level,grade,user_id",
 			"q2" => "zuowu_name,pinzhong_name,certification_code,certified_by,publish_year,publish_month,user_id",
-			"q3" => "zuowu_name,pinzhong_name,auth_code,category,publish_year,publish_month,user_id,note,ref_url,attachment_name",
-			"q4" => "title,auth_by,auth_code,publish_year,publish_month,author,user_id,note,ref_url,attachment_name",
-			"q5" => "title,author,publish_year,publish_month,publisher,user_id,note,ref_url,attachment_name",
+			"q3" => "zuowu_name,pinzhong_name,auth_code,category,publish_year,publish_month,user_id",
+			"q4" => "title,auth_by,auth_code,publish_year,publish_month,author,user_id",
+			"q5" => "title,author,publish_year,publish_month,publisher,user_id",
 			"q6" => "title,author, publisher, publish_year, publish_month, publish_page, level, effect_factor, user_id",
-			"q7" => "title,author, publisher, publish_year, publish_month, user_id,note,ref_url,attachment_name",
-			"q8" => "title,author, patent_code, org_name,category,publish_year,publish_month,user_id,note,ref_url,attachment_name",
+			"q7" => "title,author, publisher, publish_year, publish_month, user_id",
+			"q8" => "title,author, patent_code, org_name,category,publish_year,publish_month,user_id",
 			"q9" => "title,author, description, user_id,note,ref_url,attachment_name",
 	);
 	
