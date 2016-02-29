@@ -126,7 +126,7 @@ class ReportController extends BaseController{
 		
 $doc_body ='
 <div class="container">		
-<h3>登入：'.$this->f3->get('SESSION[username]'). '</h3> 		
+<h3>登入：'.$this->f3->get('SESSION[username]'). ' , '. ( $_POST['wuzhong'] ?  $_POST['wuzhong'] : "ALL" ) . '</h3> 		
 <h1>成果汇总</h1>
 <h3>1.获奖项目</h3>
   <ol type="A"> 
