@@ -31,6 +31,11 @@ class MyClass extends BaseController {
 		echo $myReportController->generatePageBody();
 	}
 
+	function reportimages(){
+		$myReportController = new ReportController();
+		$myReportController->generateAttachmentPage();
+	}
+	
 	function downloadreport(){
 		$myReportController = new ReportController();
 		$myReportController->generateDownload();

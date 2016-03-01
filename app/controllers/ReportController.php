@@ -115,6 +115,26 @@ class ReportController extends BaseController{
 		return $report;
 	}
 	
+
+	function generateAttachmentPage() {
+		$query = "select attachment_type, attachment from q6 where attachment is not null";
+		$result = $this->runQuery($query);
+		echo '<div class="container">';
+		foreach ($result as $row) {
+			echo "<p>";
+			if ($row['attachment_type'] == 'image/jpeg') {
+				echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['attachment'] ).'" width="90%" />';
+			}
+			if ($row['attachment_type'] == 'application/pdf') {
+		        echo '<embed src="data:application/pdf;base64,'.base64_encode( $row['attachment'] ).'" width="700" height="700" type="application/pdf">';
+				//echo '<object data="'.base64_encode( $row['attachment'] ).'" width="500" height="700" type="application/pdf">aaaa</object>';
+			}
+			echo "</p>";
+		}
+		echo '</div>';
+		//echo '<img src="data:image/jpeg;base64,'.base64_encode( $image ).'" width="500"/>';
+		//echo '<embed src="data:application/pdf;base64,'.base64_encode( $image ).'" width="700" height="700" type="application/pdf">';
+	}
 	
 	function generatePageBody(){
 		
