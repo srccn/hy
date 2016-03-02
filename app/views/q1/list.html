@@ -52,11 +52,11 @@
 	            </true>
 	            <false>
 		          <td>
-	                <a href="{{ @BASE.'/update/q1/'. @article.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
+		                <a href="{{ @BASE.'/update/'.@VIEWTABLE.'/'. @article.id }}" class="glyphicon glyphicon glyphicon-edit" title="修改"></a> <!-- edit -->
 	<!-- 
 	                <a href="{{ @BASE.'/article/duplicate/'. @article.id }}" class="glyphicon glyphicon-duplicate" title="复制"></a> 
 	-->
-	                <a href="{{ @BASE.'/delete/q1/'. @article.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
+		                <a href="{{ @BASE.'/delete/'.@VIEWTABLE.'/'. @article.id }}" class="btn-danger glyphicon glyphicon-remove" onClick="return confirm('确定要删除?');" title="删除"></a> <!-- delete -->
             </td>    
               </false>
 	        </check>

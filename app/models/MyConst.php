@@ -39,6 +39,7 @@ class MyConst {
 	);
 	
 	public static $bulkInputCols = array (
+			//view name
 			"q1" => "title,author,publish_year,publish_month,publisher,award_name,level,grade,user_id",
 			"q2" => "zuowu_name,pinzhong_name,certification_code,certified_by,publish_year,publish_month,user_id",
 			"q3" => "zuowu_name,pinzhong_name,auth_code,category,publish_year,publish_month,user_id",

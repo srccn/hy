@@ -34,8 +34,8 @@ Class ArticleController extends BaseController {
 				
 //		$q2 = new Article($this->db, MyConst::$tables["Q2"], MyConst::$cols["Q2"]);
 //		$this->f3->set('q2',$q2->all());
-		$this->f3->set('VIEWTABLE', $db_table_name);
-		$this->f3->set('view',"$db_table_name/list.html");
+		$this->f3->set('VIEWTABLE', $table);
+		$this->f3->set('view',"$table/list.html");
 		echo Template::instance()->render('layout.htm');
 	}
 
@@ -144,7 +144,7 @@ Class ArticleController extends BaseController {
 			$this->f3->set('article',$article);
 		    
 			$this->f3->set('VIEWTABLE', $param['table']);
-			$this->f3->set('view',"/$table/update.html");
+			$this->f3->set('view', "/". $param['table']. "/update.html");
     		echo Template::instance()->render('layout.htm');
 		}
 	}
@@ -237,6 +237,7 @@ Class ArticleController extends BaseController {
 		$user_id = $this->f3->get('SESSION.userid');
         $content =  $this->f3->get('POST.bulk_content');
         $table = $param['table'];
+        $db_table = MyConst::$tables[$table];
         
         $rows = explode("\n", $content);
         $num_rows = count($rows);
@@ -246,12 +247,12 @@ Class ArticleController extends BaseController {
         	if (trim($rows[$i]) != '') {
 	        	$fields = explode("\t", $rows[$i]); 
 	        	//check number of fields
-	        	if (count($fields) + 1 != count( explode("," ,MyConst::$bulkInputCols[$param['table']]) ) ) {
+	        	if (count($fields) + 1 != count( explode("," ,MyConst::$bulkInputCols[$table]) ) ) {
 	        		echo MyConst::$bulkInputCols[$param['table']] ."<br>";
 	        		echo "输入的列数与数据库中列数不匹配，批量录入失败，请检查格式，再重试。";
 	        		die;
 	        	}
-	        	$query = "INSERT INTO " . MyConst::$tables[$param['table']] ." (" . MyConst::$bulkInputCols[$param['table']] .") 
+	        	$query = "INSERT INTO " . $db_table ." (" . MyConst::$bulkInputCols[$param['table']] .") 
 	        			  VALUES ('" . implode("','", $fields) . "', " . $user_id . "  );" ;
 	        	echo "$query <br>";
 	        	$result = $this->runQuery($query);
