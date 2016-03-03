@@ -22,8 +22,7 @@ class ReportController extends BaseController{
 		    foreach ($result as $row) {
 		    	array_push ($userList, $row['id']);
 		    }
-		    
-		    $this->report_filter = "user_id in ( " . implode(',', $userList) . ")" ;
+		        $this->report_filter = "user_id in ( " . implode(',', $userList) . ")" ;
 			}
 		}
 		
@@ -115,10 +114,72 @@ class ReportController extends BaseController{
 		return $report;
 	}
 	
+   
+	function generateAttachmentDownload() {
+		$file_path   = getcwd() . '/output_files_work/';
+		array_map('unlink', glob($file_path."*"));
+		$zipFileName = getcwd() . '/output_files/hy_image_2016.zip';
 
+		//cleanup
+		array_map('unlink', glob($file_path."*"));
+		array_map('unlink', glob( getcwd() . '/output_files/*'));
+		
+		$tables = ["articles","q2","q3","q4","q5","q6","q7","q8","q9"];
+		
+		$this->setReportFilter();
+		
+		for ($i=0; $i < count($tables) ; $i++ ) {
+			array_map('unlink', glob($file_path."*"));
+			//extract attachment out from DB
+			$query = "select attachment_type, attachment, attachment_name from " . $tables[$i] ." where attachment is not null";
+			
+			if (trim ($this->report_filter) != '') {
+				$query = $query . " AND " . $this->report_filter ; 
+			}
+			
+			$result = $this->runQuery($query);
+			foreach ($result as $row) {
+				file_put_contents($file_path . $row['attachment_name'] , $row['attachment'] );
+			}
+			
+			//create zip file
+			$zip = new ZipArchive();
+			if ($zip->open($zipFileName, ZipArchive::CREATE)!==TRUE) {
+				exit("cannot open <$zipFileName>\n");
+			}
+			$options = array('add_path' => $i+1 .'/' ,'remove_all_path' => TRUE);
+			$zip->addGlob($file_path."/*", GLOB_BRACE, $options);
+			$zip->close();
+		}
+		
+		if (file_exists($zipFileName)) {
+			//send zip file to browser
+			
+			$download_file_name = "hy_" . $_POST['wuzhong'] . ".zip";
+			
+			header("Content-Type: application/zip");
+			header("Content-Disposition: attachment; filename=$download_file_name");
+			header("Content-Length: " . filesize($zipFileName));
+			readfile($zipFileName);
+		} else {
+
+			$this->f3->set('message', "没有找到附加文件");
+			$this->f3->set('report_filter', $_POST['wuzhong']);
+			$this->f3->set('view', 'report/report.html');
+			
+			$this->f3->set('showMenu',false);
+			echo Template::instance()->render('layout.htm');
+			//		echo Template::instance()->render('report.html');
+			echo $this->generatePageBody();
+		}
+		
+	}
+	
+	
 	function generateAttachmentPage() {
-		$query = "select attachment_type, attachment from q6 where attachment is not null";
+		$query = "select attachment_type, attachment, attachment_name from q6 where attachment is not null";
 		$result = $this->runQuery($query);
+		
 		echo '<div class="container">';
 		foreach ($result as $row) {
 			echo "<p>";
@@ -271,5 +332,6 @@ $doc_body ='
         return implode ( ',' , $words );
 	}
 	
+
 	
 }

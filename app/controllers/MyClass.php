@@ -35,6 +35,13 @@ class MyClass extends BaseController {
 		$myReportController = new ReportController();
 		$myReportController->generateAttachmentPage();
 	}
+
+	function reportimagesdownload(){
+		$myReportController = new ReportController();
+		$this->f3->set('report_filter', $_POST['wuzhong']);
+		$myReportController->generateAttachmentDownload();
+	}
+	
 	
 	function downloadreport(){
 		$myReportController = new ReportController();

@@ -13,7 +13,12 @@
 						</form>
 				    </false>
 				    <true>
-				        <a href="{{@BASE.'/reportimages'}}"> 测试用 - 显示所有发表文章附加文件， 以便打印</a>
+						<form name="download_images" action="{{@BASE}}/reportimagesdownlaod" method="post" class="form-group row col-sm-2" style="float:left">
+						    <input type="hidden" name="wuzhong" value="{{@report_filter}}">
+						    <input type="submit" name="submit_doc" value="下载 附加文件Zip" class="btn btn-info"/>
+						</form>				
+				        <span>测试　只对全部发表文章：</span>
+				        <a href="{{@BASE.'/reportimages'}}" class="btn btn-info"> 显示附加文件</a>
 				    </true>
 				</check>
 		    </false>
